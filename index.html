@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Rantings — Honest. Savage. Fort Wayne.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0D0D0D;
+      --paper: #F5F0E8;
+      --cream: #EDE8DC;
+      --mustard: #E8A020;
+      --red: #C1240E;
+      --green: #1A6B3C;
+      --smoke: #2A2A2A;
+      --mid: #6B6560;
+      --rule: #D4CEBE;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ===== TICKER ===== */
+    .ticker {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 3px solid var(--mustard);
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 30s linear infinite;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+    .ticker-inner span {
+      margin: 0 40px;
+      color: var(--mustard);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 40px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 16px;
+    }
+    .nav-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+    .nav-logo {
+      line-height: 1;
+    }
+    .nav-logo .word-food {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-style: normal;
+      line-height: 1;
+    }
+    .nav-logo .word-rantings {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      font-style: italic;
+      color: var(--red);
+      line-height: 0.92;
+      margin-top: -2px;
+      letter-spacing: -0.02em;
+    }
+    .nav-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--mid);
+      cursor: pointer;
+    }
+    .nav-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== HERO / LEAD STORY ===== */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 48px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .hero-main {
+      border-right: 1px solid var(--rule);
+      padding-right: 48px;
+    }
+
+    .story-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .label-hot { color: var(--red); }
+    .label-dot {
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+    .label-new { color: var(--green); }
+    .label-dot-green {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .hero-deck {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--smoke);
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-meta .author { color: var(--ink); font-weight: 500; }
+    .hero-meta .sep { color: var(--rule); }
+
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 2px solid var(--ink);
+      margin-bottom: 24px;
+    }
+    .rating-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .rating-score.terrible { color: var(--red); }
+    .rating-score.great { color: var(--green); }
+    .rating-score.meh { color: var(--mustard); }
+    .rating-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .rating-stars { font-size: 1rem; letter-spacing: 2px; }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.9) contrast(1.05);
+    }
+    .hero-image-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+      font-style: italic;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .read-more:hover { color: var(--red); border-color: var(--red); }
+
+    /* ===== SIDEBAR ===== */
+    .hero-sidebar {}
+    .sidebar-section {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sidebar-section:last-child { border-bottom: none; }
+    .sidebar-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .verdict-box {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 24px;
+    }
+    .verdict-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      font-style: italic;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .verdict-text {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: rgba(245,240,232,0.8);
+    }
+    .verdict-score {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .verdict-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--mustard);
+    }
+    .verdict-out {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(245,240,232,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    .mini-review {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
+      cursor: pointer;
+    }
+    .mini-review:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .mini-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+    .mini-score.bad { color: var(--red); }
+    .mini-score.ok { color: var(--mustard); }
+    .mini-score.good { color: var(--green); }
+    .mini-info {}
+    .mini-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+    .mini-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-rule {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      margin-top: 48px;
+    }
+    .section-rule h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      white-space: nowrap;
+      font-style: italic;
+    }
+    .section-rule::before,
+    .section-rule::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--ink);
+    }
+    .section-rule::before { display: none; }
+
+    /* ===== REVIEW GRID ===== */
+    .reviews-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .review-card {
+      border: 1px solid var(--rule);
+      background: var(--white);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .review-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--cream);
+      overflow: hidden;
+      position: relative;
+    }
+    .review-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.85);
+    }
+    .card-score-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--ink);
+      color: var(--paper);
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+    .card-score-badge.terrible { background: var(--red); }
+    .card-score-badge.great { background: var(--green); }
+    .card-score-badge.meh { background: var(--mustard); color: var(--ink); }
+
+    .review-card-body {
+      padding: 20px;
+    }
+    .card-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .card-excerpt {
+      font-size: 0.83rem;
+      line-height: 1.6;
+      color: var(--smoke);
+      margin-bottom: 14px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+    .card-verdict {
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .card-verdict.terrible { color: var(--red); }
+    .card-verdict.great { color: var(--green); }
+    .card-verdict.meh { color: var(--mustard); }
+
+    /* ===== RANT SCALE ===== */
+    .rant-scale {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 60px 40px;
+      margin: 0;
+    }
+    .rant-scale-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .rant-scale h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .rant-scale-sub {
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(245,240,232,0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    .scale-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+    }
+    .scale-item {
+      padding: 24px 16px;
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+    }
+    .scale-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .scale-item:nth-child(1) .scale-num { color: #8B0000; }
+    .scale-item:nth-child(2) .scale-num { color: var(--red); }
+    .scale-item:nth-child(3) .scale-num { color: var(--mustard); }
+    .scale-item:nth-child(4) .scale-num { color: #7BBF8C; }
+    .scale-item:nth-child(5) .scale-num { color: var(--green); }
+    .scale-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.6);
+      margin-bottom: 6px;
+    }
+    .scale-desc {
+      font-size: 0.8rem;
+      color: rgba(245,240,232,0.45);
+      line-height: 1.5;
+    }
+
+    /* ===== ABOUT STRIP ===== */
+    .about-strip {
+      background: var(--mustard);
+      padding: 48px 40px;
+    }
+    .about-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .about-strip p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(13,13,13,0.75);
+      margin-bottom: 12px;
+    }
+    .manifesto {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 28px;
+    }
+    .manifesto-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .manifesto-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .manifesto-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ===== SUBMIT SECTION ===== */
+    .submit-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      border-top: 2px solid var(--ink);
+    }
+    .submit-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .submit-section h2 em { font-style: italic; color: var(--red); }
+    .submit-section p {
+      color: var(--smoke);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .form-field {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-bottom: 2px solid var(--ink);
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--red); }
+    .form-input::placeholder { color: var(--mid); }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+    .rating-select {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .rating-btn {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 10px 4px;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      transition: all 0.15s;
+    }
+    .rating-btn:hover, .rating-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    .rating-btn span {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .btn-submit {
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      padding: 16px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--red); }
+
+    .guidelines {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--mustard);
+      padding: 24px;
+    }
+    .guidelines h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .guideline-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--smoke);
+    }
+    .guideline-item::before {
+      content: '→';
+      color: var(--red);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 48px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 28px;
+    }
+    .footer-logo .word-food {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      line-height: 1;
+    }
+    .footer-logo .word-rantings {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--mustard);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+    .footer-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: rgba(245,240,232,0.4);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .footer-cities h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 10px;
+    }
+    .footer-cities p {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.5);
+      line-height: 1.6;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(245,240,232,0.3);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 32px 20px; }
+      .hero-main { border-right: none; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 32px; }
+      .reviews-grid { grid-template-columns: 1fr; padding: 0 20px 40px; }
+      .scale-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-strip-inner { grid-template-columns: 1fr; gap: 32px; }
+      .submit-section { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+      .nav-bottom { padding: 10px 20px; }
+      .nav-links { gap: 16px; }
+      .section-rule { padding: 0 20px; }
+      .rant-scale { padding: 40px 20px; }
+      .footer-top { flex-direction: column; gap: 24px; }
+      .nav-date { display: none; }
+    }
+
+    /* ===== COMMUNITY RANTS ===== */
+    .community-rants-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .community-rants-grid { grid-template-columns: 1fr; padding: 0 20px 40px; }
+    }
+    .community-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-top: 4px solid var(--mustard);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .community-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .community-restaurant {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .community-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .community-score.score-bad  { color: var(--red); }
+    .community-score.score-meh  { color: var(--mustard); }
+    .community-score.score-good { color: var(--green); }
+    .community-rant-text {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--smoke);
+      flex: 1;
+    }
+    .community-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+    .community-author { font-weight: 500; color: var(--ink); }
+    .community-tag {
+      display: inline-block;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      color: var(--mid);
+    }
+    .rants-loading, .rants-empty {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== FORM STATES ===== */
+    .submit-success {
+      display: none;
+      background: var(--green);
+      color: var(--white);
+      padding: 20px 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 16px;
+      line-height: 1.4;
+    }
+    .submit-error {
+      display: none;
+      background: var(--red);
+      color: var(--white);
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      margin-top: 12px;
+    }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Rating button JS */
+  </style>
+</head>
+<body>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      LATEST RANT: That new burger spot on Coliseum — overpriced, underseasoned, overhyped &nbsp;★&nbsp; BREAKING: Local pizza chain still using 1987 recipe. We checked. &nbsp;★&nbsp; VERDICT: The best taco truck in Fort Wayne costs $3. The worst restaurant costs $35. Do the math. &nbsp;★&nbsp; WARNING: Do not order the "Chef's Special" unless you enjoy disappointment &nbsp;★&nbsp; LATEST RANT: That new burger spot on Coliseum — overpriced, underseasoned, overhyped &nbsp;★&nbsp; BREAKING: Local pizza chain still using 1987 recipe. We checked. &nbsp;★&nbsp; VERDICT: The best taco truck in Fort Wayne costs $3. The worst restaurant costs $35. Do the math. &nbsp;★&nbsp; WARNING: Do not order the "Chef's Special" unless you enjoy disappointment &nbsp;★&nbsp;
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-top">
+      <div class="nav-tagline">Fort Wayne's Most Honest Food Publication</div>
+      <div class="nav-logo">
+        <span class="word-food">Food</span>
+        <span class="word-rantings">Rantings</span>
+      </div>
+    </div>
+    <div class="nav-bottom">
+      <ul class="nav-links">
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#scale">Our Scale</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#submit">Submit a Rant</a></li>
+      </ul>
+      <div class="nav-date" id="nav-date"></div>
+      <div class="nav-search">🔍 Search reviews</div>
+    </div>
+  </nav>
+
+  <!-- Hero / Lead Story -->
+  <div class="hero">
+    <div class="hero-main">
+      <div class="story-label label-hot"><div class="label-dot"></div>This Week's Main Rant</div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80" alt="Overpriced burger" />
+      </div>
+      <div class="hero-image-caption">Pictured: $18 worth of disappointment. The lettuce was the best part.</div>
+      <br>
+      <div class="rating-badge">
+        <div class="rating-score terrible">3.1</div>
+        <div>
+          <div class="rating-stars">★★☆☆☆</div>
+          <div class="rating-label">Out of 10 · Burgers · Fort Wayne</div>
+        </div>
+      </div>
+      <h1 class="hero-headline">Burgers & Brew Wants $18 For a Burger.<br><em>We Tried It. Here's the Ugly Truth.</em></h1>
+      <div class="hero-meta">
+        <span class="author">By The Rant Desk</span>
+        <span class="sep">|</span>
+        <span>February 2025</span>
+        <span class="sep">|</span>
+        <span>Fort Wayne, IN</span>
+      </div>
+      <p class="hero-deck">Let's be clear about something: an $18 burger in Fort Wayne had better arrive on a golden tray carried by someone in a tuxedo. What we got instead was a dry patty, a brioche bun that disintegrated on contact, and fries that had clearly been sitting under a heat lamp since the previous administration. The ambiance? Loud. The service? Confused. The bill? Offensive.</p>
+      <a href="#" class="read-more">Read the full rant →</a>
+    </div>
+
+    <div class="hero-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">The Verdict</div>
+        <div class="verdict-box">
+          <div class="verdict-title">"You'll spend $60 for two people and leave wishing you'd gone to Taco Bell."</div>
+          <p class="verdict-text">The concept is solid. The execution is not. Fort Wayne has better burgers at half the price. We checked. Multiple times. In the name of journalism.</p>
+          <div class="verdict-score">
+            <div class="verdict-num">3.1</div>
+            <div class="verdict-out">out of 10<br>Would Not Recommend</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Also This Week</div>
+        <div class="mini-review">
+          <div class="mini-score good">8.4</div>
+          <div class="mini-info">
+            <div class="mini-name">Casa Restaurant</div>
+            <div class="mini-tag">Mexican · Fort Wayne · Surprisingly Excellent</div>
+          </div>
+        </div>
+        <div class="mini-review">
+          <div class="mini-score ok">5.2</div>
+          <div class="mini-info">
+            <div class="mini-name">The Rustic Fork</div>
+            <div class="mini-tag">American · Fort Wayne · Fine. Just Fine.</div>
+          </div>
+        </div>
+        <div class="mini-review">
+          <div class="mini-score bad">2.8</div>
+          <div class="mini-info">
+            <div class="mini-name">Fusion 360</div>
+            <div class="mini-tag">Fusion · Fort Wayne · Confused Identity</div>
+          </div>
+        </div>
+        <div class="mini-review">
+          <div class="mini-score good">7.9</div>
+          <div class="mini-info">
+            <div class="mini-name">Takaoka Japanese</div>
+            <div class="mini-tag">Japanese · Fort Wayne · Legit</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Fort Wayne Food Truth</div>
+        <p style="font-size:0.85rem; line-height:1.65; color:var(--smoke);">The best meal in this city costs under $10 and comes from a place with no Instagram presence. The worst comes from somewhere with a QR code menu and exposed Edison bulbs. We will find both and report back.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Reviews -->
+  <div class="section-rule" id="reviews"><h2>Recent Rantings</h2></div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-card-img">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Restaurant interior" />
+        <div class="card-score-badge great">8.4</div>
+      </div>
+      <div class="review-card-body">
+        <div class="card-category">Mexican · Fort Wayne</div>
+        <div class="card-title">Casa Actually Delivers. We're As Shocked As You Are.</div>
+        <p class="card-excerpt">In a city full of Tex-Mex imposters drowning everything in processed cheese, Casa shows up with actual technique. The carnitas are criminally underpriced.</p>
+        <div class="card-footer">
+          <span class="card-verdict great">Highly Recommended</span>
+          <span>Feb 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-card-img">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80" alt="Sushi" />
+        <div class="card-score-badge great">7.9</div>
+      </div>
+      <div class="review-card-body">
+        <div class="card-category">Japanese · Fort Wayne</div>
+        <div class="card-title">Takaoka: Fort Wayne Has One Good Sushi Spot. This Is It.</div>
+        <p class="card-excerpt">Before you argue — yes, we've tried the others. This is the one. Fresh fish, clean rice, no gimmicks. A minor miracle in the midwest.</p>
+        <div class="card-footer">
+          <span class="card-verdict great">Go Here</span>
+          <span>Jan 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-card-img">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Fancy plate" />
+        <div class="card-score-badge meh">5.2</div>
+      </div>
+      <div class="review-card-body">
+        <div class="card-category">American · Fort Wayne</div>
+        <div class="card-title">The Rustic Fork Is Fine. Aggressively, Pointedly Fine.</div>
+        <p class="card-excerpt">Nothing wrong with it. Nothing particularly right with it either. It exists. You could eat there. You could also not. Both are valid life choices.</p>
+        <div class="card-footer">
+          <span class="card-verdict meh">If You Must</span>
+          <span>Jan 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Community Rants (approved reader submissions) -->
+  <div class="section-rule" id="community-rants-header" style="display:none"><h2>Reader Rants</h2></div>
+  <div id="community-rants-container"></div>
+  <div class="rant-scale" id="scale">
+    <div class="rant-scale-inner">
+      <h2>The Food Rantings Scale</h2>
+      <p class="rant-scale-sub">How we score · No curve · No mercy · No asterisks</p>
+      <div class="scale-grid">
+        <div class="scale-item">
+          <div class="scale-num">1–3</div>
+          <div class="scale-label">A Crime</div>
+          <div class="scale-desc">Active health hazard or culinary insult. We will name names.</div>
+        </div>
+        <div class="scale-item">
+          <div class="scale-num">4–5</div>
+          <div class="scale-label">Disappointing</div>
+          <div class="scale-desc">You tried. The effort was noted. The result was not.</div>
+        </div>
+        <div class="scale-item">
+          <div class="scale-num">6–7</div>
+          <div class="scale-label">Acceptable</div>
+          <div class="scale-desc">Solid. Won't change your life. Won't ruin your night.</div>
+        </div>
+        <div class="scale-item">
+          <div class="scale-num">8–9</div>
+          <div class="scale-label">Go Here</div>
+          <div class="scale-desc">Legitimately good. Tell your friends. Go twice.</div>
+        </div>
+        <div class="scale-item">
+          <div class="scale-num">10</div>
+          <div class="scale-label">Legendary</div>
+          <div class="scale-desc">Reserved. May never be awarded. Standards are standards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="about-strip" id="about">
+    <div class="about-strip-inner">
+      <div>
+        <h2>We Say What<br>Yelp Won't.</h2>
+        <p>Yelp is a protection racket disguised as a review site. Google reviews are written by people who give 5 stars because the waiter said "enjoy your meal." We are neither of those things.</p>
+        <p>Food Rantings is Fort Wayne's honest food publication. We pay for our own meals. We have no sponsors. We have no advertisers shaping our opinions. We just have opinions — and the willingness to share them.</p>
+        <p>Starting in Fort Wayne. Going national. One rant at a time.</p>
+      </div>
+      <div class="manifesto">
+        <div class="manifesto-item"><div class="manifesto-icon">💰</div><div>We always pay for our own food. No comped meals. No PR dinners. No "invited tastings."</div></div>
+        <div class="manifesto-item"><div class="manifesto-icon">🚫</div><div>No advertisers. No sponsored content. No restaurant can buy a better review.</div></div>
+        <div class="manifesto-item"><div class="manifesto-icon">📍</div><div>Fort Wayne first — but we're coming to your city. Watch this space.</div></div>
+        <div class="manifesto-item"><div class="manifesto-icon">✍️</div><div>Real opinions from real people who eat real food. Novel concept, we know.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit a Rant -->
+  <div class="submit-section" id="submit">
+    <div>
+      <h2>Got a Rant?<br><em>We Want It.</em></h2>
+      <p>Had a meal so bad you need to warn people? Found a hidden gem the city is sleeping on? Submit your rant and we'll review it for publication. Best submissions get featured.</p>
+      <div class="guidelines">
+        <h3>What makes a good rant</h3>
+        <div class="guideline-item">Be specific. "The food was bad" is not a rant. "The pasta tasted like it was cooked in dishwater and seasoned with regret" is a rant.</div>
+        <div class="guideline-item">Be honest. Don't submit a rant because an employee was rude to you personally. We're reviewing food, not people's days.</div>
+        <div class="guideline-item">Be fair. If you have a complaint, you should also be able to say one thing they did right. Even if it's just "the parking was free."</div>
+        <div class="guideline-item">No fake reviews. We will check. Fort Wayne is not that big.</div>
+      </div>
+    </div>
+    <div>
+      <!-- Netlify Forms: data-netlify="true" tells Netlify to capture this form.
+           The hidden input[name="form-name"] is required by Netlify. -->
+      <form
+        id="rant-form"
+        name="rant-submission"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onsubmit="handleRantSubmit(event)"
+      >
+        <!-- Required by Netlify -->
+        <input type="hidden" name="form-name" value="rant-submission" />
+        <!-- Honeypot spam trap — hidden from real users -->
+        <div style="display:none">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Restaurant Name</label>
+          <input type="text" name="restaurant" class="form-input" placeholder="What poor establishment are we discussing?" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Your Rating</label>
+          <input type="hidden" name="rating" id="rating-value" value="" />
+          <div class="rating-select">
+            <div class="rating-btn" onclick="selectRating(this, '1-2')">1–2<span>Crime</span></div>
+            <div class="rating-btn" onclick="selectRating(this, '3-4')">3–4<span>Bad</span></div>
+            <div class="rating-btn" onclick="selectRating(this, '5-6')">5–6<span>Meh</span></div>
+            <div class="rating-btn" onclick="selectRating(this, '7-8')">7–8<span>Good</span></div>
+            <div class="rating-btn" onclick="selectRating(this, '9-10')">9–10<span>Legend</span></div>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">The Rant</label>
+          <textarea name="rant" class="form-input" rows="5" placeholder="Don't hold back. This is what we're here for." required></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Your Name (or alias)</label>
+          <input type="text" name="author" class="form-input" placeholder="Anonymous Eater, The Hangry Critic, whatever works" />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Your Email (not published)</label>
+          <input type="email" name="email" class="form-input" placeholder="For follow-up only" />
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn">Submit My Rant →</button>
+        <div class="submit-error" id="submit-error">Something went wrong. Try again in a moment.</div>
+      </form>
+      <div class="submit-success" id="submit-success">
+        Rant received. We'll review it and if it makes the cut, Fort Wayne will know. Thanks for keeping it honest.
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="word-food">Food</span>
+            <span class="word-rantings">Rantings</span>
+          </div>
+          <div class="footer-tagline">Honest. Savage. Fort Wayne. (For Now.)</div>
+        </div>
+        <div class="footer-cities">
+          <h4>Currently Covering</h4>
+          <p>Fort Wayne, IN — and expanding.<br>Your city is next. Stay tuned.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 FoodRantings.com — We paid for every meal reviewed on this site.</span>
+        <span>No sponsors. No mercy.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Date in nav ──────────────────────────────────────────────
+    const d = new Date();
+    document.getElementById('nav-date').textContent = d.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    // ── Rating button selector ───────────────────────────────────
+    function selectRating(el, value) {
+      document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('rating-value').value = value;
+    }
+
+    // ── Form submission via fetch (Netlify Forms) ────────────────
+    async function handleRantSubmit(e) {
+      e.preventDefault();
+      const form    = document.getElementById('rant-form');
+      const btn     = document.getElementById('submit-btn');
+      const errBox  = document.getElementById('submit-error');
+      const success = document.getElementById('submit-success');
+
+      if (!document.getElementById('rating-value').value) {
+        errBox.textContent = 'Pick a rating before you submit.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      errBox.style.display = 'none';
+
+      try {
+        const data = new FormData(form);
+        const res  = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString(),
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          throw new Error('Non-OK response');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Submit My Rant →';
+        errBox.textContent = 'Something went wrong. Try again in a moment.';
+        errBox.style.display = 'block';
+      }
+    }
+
+    // ── Score helpers ─────────────────────────────────────────────
+    function scoreClass(rating) {
+      const r = rating || '';
+      if (r.startsWith('1') || r.startsWith('2') || r.startsWith('3')) return 'score-bad';
+      if (r.startsWith('5') || r.startsWith('6')) return 'score-meh';
+      return 'score-good';
+    }
+    function scoreVerdict(rating) {
+      const r = rating || '';
+      if (r.startsWith('1') || r.startsWith('2')) return 'A Crime';
+      if (r.startsWith('3') || r.startsWith('4')) return 'Bad';
+      if (r.startsWith('5') || r.startsWith('6')) return 'Meh';
+      if (r.startsWith('7') || r.startsWith('8')) return 'Good';
+      return 'Legendary';
+    }
+
+    // ── Load approved community rants ────────────────────────────
+    async function loadCommunityRants() {
+      const container = document.getElementById('community-rants-container');
+      const header    = document.getElementById('community-rants-header');
+
+      try {
+        const res     = await fetch('/api/reviews');
+        const reviews = await res.json();
+
+        if (!Array.isArray(reviews) || reviews.length === 0) return;
+
+        header.style.display = '';
+
+        const grid = document.createElement('div');
+        grid.className = 'community-rants-grid';
+
+        reviews.forEach(r => {
+          const cls = scoreClass(r.rating);
+          grid.innerHTML += `
+            <div class="community-card">
+              <div class="community-card-header">
+                <div class="community-restaurant">${escHtml(r.restaurant)}</div>
+                <div class="community-score ${cls}">${escHtml(r.rating)}</div>
+              </div>
+              <span class="community-tag">${scoreVerdict(r.rating)}</span>
+              <p class="community-rant-text">${escHtml(r.rant)}</p>
+              <div class="community-footer">
+                <span class="community-author">${escHtml(r.author)}</span>
+                <span>${escHtml(r.date)}</span>
+              </div>
+            </div>`;
+        });
+
+        container.appendChild(grid);
+      } catch {
+        // Silently fail — editorial reviews still show
+      }
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    loadCommunityRants();
+  </script>
+</body>
+</html>
