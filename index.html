@@ -1210,6 +1210,25 @@
           <label class="form-label">Your Email (not published)</label>
           <input type="email" name="email" class="form-input" placeholder="For follow-up only" />
         </div>
+        <div class="form-field">
+          <label class="form-label">Food Photo (optional)</label>
+          <input type="hidden" name="photo_url" id="photo-url" value="" />
+          <div id="upload-widget-btn" style="
+            background: var(--cream);
+            border: 1px solid var(--rule);
+            border-bottom: 2px solid var(--ink);
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--mid);
+            cursor: pointer;
+            text-align: center;
+          ">📷 Upload a photo of your meal</div>
+          <div id="upload-preview" style="display:none; margin-top:10px;">
+            <img id="upload-preview-img" src="" alt="Food photo preview" style="width:100%; max-height:200px; object-fit:cover; border:1px solid var(--rule);" />
+            <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--green); margin-top:4px; letter-spacing:0.1em;">✓ PHOTO UPLOADED</div>
+          </div>
+        </div>
         <button type="submit" class="btn-submit" id="submit-btn">Submit My Rant →</button>
         <div class="submit-error" id="submit-error">Something went wrong. Try again in a moment.</div>
       </form>
@@ -1330,8 +1349,10 @@
 
         reviews.forEach(r => {
           const cls = scoreClass(r.rating);
+          const photoHtml = r.photo_url ? `<img src="${escHtml(r.photo_url)}" alt="Food photo" style="width:100%; height:160px; object-fit:cover; border:1px solid var(--rule); margin-bottom:12px;" />` : '';
           grid.innerHTML += `
             <div class="community-card">
+              ${photoHtml}
               <div class="community-card-header">
                 <div class="community-restaurant">${escHtml(r.restaurant)}</div>
                 <div class="community-score ${cls}">${escHtml(r.rating)}</div>
@@ -1361,5 +1382,49 @@
 
     loadCommunityRants();
   </script>
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+  <script>
+    // Cloudinary upload widget
+    const cloudinaryWidget = cloudinary.createUploadWidget(
+      {
+        cloudName: 'dzvtluja5',
+        uploadPreset: 'food_rantings',
+        sources: ['local', 'camera'],
+        multiple: false,
+        maxFileSize: 5000000,
+        cropping: false,
+        styles: {
+          palette: {
+            window: '#F5F0E8',
+            windowBorder: '#0D0D0D',
+            tabIcon: '#C1240E',
+            menuIcons: '#0D0D0D',
+            textDark: '#0D0D0D',
+            textLight: '#F5F0E8',
+            link: '#C1240E',
+            action: '#C1240E',
+            inactiveTabIcon: '#6B6560',
+            error: '#C1240E',
+            inProgress: '#E8A020',
+            complete: '#1A6B3C',
+            sourceBg: '#EDE8DC'
+          }
+        }
+      },
+      (error, result) => {
+        if (!error && result && result.event === 'success') {
+          document.getElementById('photo-url').value = result.info.secure_url;
+          document.getElementById('upload-preview-img').src = result.info.secure_url;
+          document.getElementById('upload-preview').style.display = 'block';
+          document.getElementById('upload-widget-btn').textContent = '📷 Change photo';
+        }
+      }
+    );
+
+    document.getElementById('upload-widget-btn').addEventListener('click', () => {
+      cloudinaryWidget.open();
+    });
+  </script>
 </body>
 </html>
+
