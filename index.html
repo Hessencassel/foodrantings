@@ -827,6 +827,23 @@
       .nav-date { display: none; }
     }
 
+    /* ===== FILTER BUTTONS ===== */
+    .rant-filter {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-bottom: 2px solid var(--ink);
+      padding: 7px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .rant-filter:hover { border-bottom-color: var(--red); color: var(--red); }
+    .rant-filter.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
     /* ===== COMMUNITY RANTS ===== */
     .community-rants-grid {
       max-width: 1200px;
@@ -987,38 +1004,38 @@
     <div class="hero-main">
       <div class="story-label label-hot"><div class="label-dot"></div>This Week's Main Rant</div>
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80" alt="Overpriced burger" />
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=900&q=80" alt="Mexican food" />
       </div>
-      <div class="hero-image-caption">Pictured: $18 worth of disappointment. The lettuce was the best part.</div>
+      <div class="hero-image-caption">Fort Wayne finally has a Mexican restaurant that knows what it is doing.</div>
       <br>
       <div class="rating-badge">
-        <div class="rating-score terrible">3.1</div>
+        <div class="rating-score great">8</div>
         <div>
-          <div class="rating-stars">★★☆☆☆</div>
-          <div class="rating-label">Out of 10 · Burgers · Fort Wayne</div>
+          <div class="rating-stars">★★★★☆</div>
+          <div class="rating-label">Out of 10 · Mexican · Fort Wayne</div>
         </div>
       </div>
-      <h1 class="hero-headline">Burgers & Brew Wants $18 For a Burger.<br><em>We Tried It. Here's the Ugly Truth.</em></h1>
+      <h1 class="hero-headline">Mercado Raised the Bar So High<br><em>Everything Else Has To Answer For Itself.</em></h1>
       <div class="hero-meta">
         <span class="author">By The Rant Desk</span>
         <span class="sep">|</span>
-        <span>February 2025</span>
+        <span>May 2022</span>
         <span class="sep">|</span>
         <span>Fort Wayne, IN</span>
       </div>
-      <p class="hero-deck">Let's be clear about something: an $18 burger in Fort Wayne had better arrive on a golden tray carried by someone in a tuxedo. What we got instead was a dry patty, a brioche bun that disintegrated on contact, and fries that had clearly been sitting under a heat lamp since the previous administration. The ambiance? Loud. The service? Confused. The bill? Offensive.</p>
-      <a href="#" class="read-more">Read the full rant →</a>
+      <p class="hero-deck">We thought we had found the ceiling with Tequila out southwest. Then Mercado showed up and the ceiling moved. The flavor here is sharper, more intentional, and more complex than anything else Fort Wayne's Mexican food scene has produced. You are going to pay more. You are also going to eat food that tastes like someone in the kitchen actually cared about the outcome. That is rarer than it should be in this city.</p>
+      <a href="#community-rants-header" class="read-more">Read all rants →</a>
     </div>
 
     <div class="hero-sidebar">
       <div class="sidebar-section">
         <div class="sidebar-label">The Verdict</div>
         <div class="verdict-box">
-          <div class="verdict-title">"You'll spend $60 for two people and leave wishing you'd gone to Taco Bell."</div>
-          <p class="verdict-text">The concept is solid. The execution is not. Fort Wayne has better burgers at half the price. We checked. Multiple times. In the name of journalism.</p>
+          <div class="verdict-title">"The best Mexican restaurant in Fort Wayne. Full stop."</div>
+          <p class="verdict-text">If you have been sleeping on Mercado because of the price point, stop doing that. Go once, eat well, and recalibrate your expectations for what Mexican food in Fort Wayne can actually be.</p>
           <div class="verdict-score">
-            <div class="verdict-num">3.1</div>
-            <div class="verdict-out">out of 10<br>Would Not Recommend</div>
+            <div class="verdict-num">8</div>
+            <div class="verdict-out">out of 10<br>Must Visit</div>
           </div>
         </div>
       </div>
@@ -1026,38 +1043,38 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Also This Week</div>
         <div class="mini-review">
-          <div class="mini-score good">8.4</div>
+          <div class="mini-score great">8</div>
           <div class="mini-info">
-            <div class="mini-name">Casa Restaurant</div>
-            <div class="mini-tag">Mexican · Fort Wayne · Surprisingly Excellent</div>
+            <div class="mini-name">Old Gas House</div>
+            <div class="mini-tag">American · Fort Wayne · Never a Bad Night</div>
           </div>
         </div>
         <div class="mini-review">
-          <div class="mini-score ok">5.2</div>
+          <div class="mini-score great">8</div>
           <div class="mini-info">
-            <div class="mini-name">The Rustic Fork</div>
-            <div class="mini-tag">American · Fort Wayne · Fine. Just Fine.</div>
+            <div class="mini-name">Black Canyon</div>
+            <div class="mini-tag">Steakhouse · Fort Wayne · They Know Medium Rare</div>
           </div>
         </div>
         <div class="mini-review">
-          <div class="mini-score bad">2.8</div>
+          <div class="mini-score bad">2</div>
           <div class="mini-info">
-            <div class="mini-name">Fusion 360</div>
-            <div class="mini-tag">Fusion · Fort Wayne · Confused Identity</div>
+            <div class="mini-name">Trolley Steaks</div>
+            <div class="mini-tag">Steakhouse · Fort Wayne · Dirty Glass. No Return.</div>
           </div>
         </div>
         <div class="mini-review">
-          <div class="mini-score good">7.9</div>
+          <div class="mini-score ok">6</div>
           <div class="mini-info">
-            <div class="mini-name">Takaoka Japanese</div>
-            <div class="mini-tag">Japanese · Fort Wayne · Legit</div>
+            <div class="mini-name">Hall's Drive In</div>
+            <div class="mini-tag">American · Fort Wayne · Dice Roll Every Time</div>
           </div>
         </div>
       </div>
 
       <div class="sidebar-section">
         <div class="sidebar-label">Fort Wayne Food Truth</div>
-        <p style="font-size:0.85rem; line-height:1.65; color:var(--smoke);">The best meal in this city costs under $10 and comes from a place with no Instagram presence. The worst comes from somewhere with a QR code menu and exposed Edison bulbs. We will find both and report back.</p>
+        <p style="font-size:0.85rem; line-height:1.65; color:var(--smoke);">The best meal in this city comes from a place with no Instagram presence. The worst comes from somewhere with a QR code menu and exposed Edison bulbs. We will find both and report back.</p>
       </div>
     </div>
   </div>
@@ -1068,48 +1085,48 @@
   <div class="reviews-grid">
     <div class="review-card">
       <div class="review-card-img">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Restaurant interior" />
-        <div class="card-score-badge great">8.4</div>
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining" />
+        <div class="card-score-badge great">8</div>
       </div>
       <div class="review-card-body">
-        <div class="card-category">Mexican · Fort Wayne</div>
-        <div class="card-title">Casa Actually Delivers. We're As Shocked As You Are.</div>
-        <p class="card-excerpt">In a city full of Tex-Mex imposters drowning everything in processed cheese, Casa shows up with actual technique. The carnitas are criminally underpriced.</p>
+        <div class="card-category">Italian · Fort Wayne</div>
+        <div class="card-title">Salvatori's Could Put Casa Grande Out of Business. We Said It.</div>
+        <p class="card-excerpt">Everything was delicious and cooked to perfection. The bread is made fresh, comes with the meal, and will ruin you for lesser bread. Bar area seating is the right call.</p>
         <div class="card-footer">
-          <span class="card-verdict great">Highly Recommended</span>
-          <span>Feb 2025</span>
+          <span class="card-verdict great">Must Visit</span>
+          <span>Apr 2022</span>
         </div>
       </div>
     </div>
 
     <div class="review-card">
       <div class="review-card-img">
-        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80" alt="Sushi" />
-        <div class="card-score-badge great">7.9</div>
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Pizza" />
+        <div class="card-score-badge great">8</div>
       </div>
       <div class="review-card-body">
-        <div class="card-category">Japanese · Fort Wayne</div>
-        <div class="card-title">Takaoka: Fort Wayne Has One Good Sushi Spot. This Is It.</div>
-        <p class="card-excerpt">Before you argue — yes, we've tried the others. This is the one. Fresh fish, clean rice, no gimmicks. A minor miracle in the midwest.</p>
+        <div class="card-category">Pizza · Fort Wayne</div>
+        <div class="card-title">Clara's Pizza King: If You Grew Up Here and Haven't Been, I Feel Bad For You.</div>
+        <p class="card-excerpt">The crust is right. The sauce is right. The ratios are right. Clara's has never felt the need to reinvent itself for people who discovered pizza last year. Good.</p>
         <div class="card-footer">
-          <span class="card-verdict great">Go Here</span>
-          <span>Jan 2025</span>
+          <span class="card-verdict great">Must Visit</span>
+          <span>May 2024</span>
         </div>
       </div>
     </div>
 
     <div class="review-card">
       <div class="review-card-img">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Fancy plate" />
-        <div class="card-score-badge meh">5.2</div>
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Restaurant" />
+        <div class="card-score-badge bad">2</div>
       </div>
       <div class="review-card-body">
-        <div class="card-category">American · Fort Wayne</div>
-        <div class="card-title">The Rustic Fork Is Fine. Aggressively, Pointedly Fine.</div>
-        <p class="card-excerpt">Nothing wrong with it. Nothing particularly right with it either. It exists. You could eat there. You could also not. Both are valid life choices.</p>
+        <div class="card-category">Steakhouse · Fort Wayne</div>
+        <div class="card-title">Trolley Steaks: Dirty Glass Before I Even Ordered. Last Visit.</div>
+        <p class="card-excerpt">The serving dishes were dirty. My Old Fashioned glass was dirty. Six people all ordered different things and all walked away disappointed. That is not bad luck.</p>
         <div class="card-footer">
-          <span class="card-verdict meh">If You Must</span>
-          <span>Jan 2025</span>
+          <span class="card-verdict bad">A Crime</span>
+          <span>Mar 2022</span>
         </div>
       </div>
     </div>
@@ -1117,6 +1134,16 @@
 
   <!-- Reader Rants — Pre-loaded editorial reviews -->
   <div class="section-rule" id="community-rants-header"><h2>Reader Rants</h2></div>
+
+  <!-- Filter bar -->
+  <div style="max-width:1200px; margin:0 auto; padding:0 40px 24px; display:flex; gap:10px; flex-wrap:wrap;">
+    <button class="rant-filter active" onclick="filterRants(this, 'all')">All</button>
+    <button class="rant-filter" onclick="filterRants(this, 'Must Visit')">Must Visit</button>
+    <button class="rant-filter" onclick="filterRants(this, 'Meh')">Meh</button>
+    <button class="rant-filter" onclick="filterRants(this, 'Bad')">Bad</button>
+    <button class="rant-filter" onclick="filterRants(this, 'A Crime')">A Crime</button>
+  </div>
+
   <div id="community-rants-container">
     <div class="community-rants-grid" id="static-reviews-grid">
 
@@ -1462,29 +1489,29 @@
       <p class="rant-scale-sub">How we score · No curve · No mercy · No asterisks</p>
       <div class="scale-grid">
         <div class="scale-item">
-          <div class="scale-num">1–3</div>
+          <div class="scale-num">1–2</div>
           <div class="scale-label">A Crime</div>
-          <div class="scale-desc">Active health hazard or culinary insult. We will name names.</div>
+          <div class="scale-desc">Active failure. We will name names and we will not apologize for it.</div>
         </div>
         <div class="scale-item">
-          <div class="scale-num">4–5</div>
-          <div class="scale-label">Disappointing</div>
+          <div class="scale-num">3–4</div>
+          <div class="scale-label">Bad</div>
           <div class="scale-desc">You tried. The effort was noted. The result was not.</div>
         </div>
         <div class="scale-item">
-          <div class="scale-num">6–7</div>
-          <div class="scale-label">Acceptable</div>
+          <div class="scale-num">5–6</div>
+          <div class="scale-label">Meh</div>
           <div class="scale-desc">Solid. Won't change your life. Won't ruin your night.</div>
         </div>
         <div class="scale-item">
-          <div class="scale-num">8–9</div>
-          <div class="scale-label">Go Here</div>
+          <div class="scale-num">7–8</div>
+          <div class="scale-label">Must Visit</div>
           <div class="scale-desc">Legitimately good. Tell your friends. Go twice.</div>
         </div>
         <div class="scale-item">
-          <div class="scale-num">10</div>
-          <div class="scale-label">Legendary</div>
-          <div class="scale-desc">Reserved. May never be awarded. Standards are standards.</div>
+          <div class="scale-num">9–10</div>
+          <div class="scale-label">Legend</div>
+          <div class="scale-desc">Reserved. Rarely awarded. Standards are standards.</div>
         </div>
       </div>
     </div>
@@ -1741,6 +1768,16 @@
     }
 
     loadCommunityRants();
+
+    // ── Filter ───────────────────────────────────────────────────
+    function filterRants(btn, tag) {
+      document.querySelectorAll('.rant-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.community-card').forEach(card => {
+        const cardTag = card.querySelector('.community-tag')?.textContent || '';
+        card.style.display = (tag === 'all' || cardTag === tag) ? '' : 'none';
+      });
+    }
 
     // ── Search ───────────────────────────────────────────────────
     function openSearch() {
