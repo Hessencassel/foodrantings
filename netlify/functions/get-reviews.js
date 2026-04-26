@@ -48,6 +48,7 @@ exports.handler = async () => {
       rant: s.data.rant || '',
       author: s.data.author || 'Anonymous Eater',
       photo_url: s.data.photo_url || '',
+      photo_urls: s.data.photo_urls || s.data.photo_url || '',
       date: new Date(s.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
     }));
 
