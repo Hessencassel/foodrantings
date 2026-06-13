@@ -56,6 +56,54 @@
       to { transform: translateX(-50%); }
     }
 
+    /* ===== STATS STRIP ===== */
+    .stats-strip {
+      background: var(--red);
+      color: var(--white);
+      padding: 14px 40px;
+    }
+    .stats-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .stats-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .stats-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
+    }
+    .stats-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      white-space: nowrap;
+    }
+    .stats-sep {
+      color: rgba(255,255,255,0.3);
+      font-size: 1.1rem;
+      font-family: 'DM Mono', monospace;
+      align-self: center;
+    }
+    @media (max-width: 900px) {
+      .stats-strip { padding: 14px 20px; }
+      .stats-strip-inner { justify-content: center; gap: 12px; }
+      .stats-sep { display: none; }
+    }
+
     /* ===== NAV ===== */
     nav {
       background: var(--paper);
@@ -139,7 +187,9 @@
       font-family: 'DM Sans', sans-serif;
       color: var(--mid);
       cursor: pointer;
+      transition: color 0.2s;
     }
+    .nav-search:hover { color: var(--ink); }
     .nav-date {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
@@ -508,6 +558,57 @@
     .card-verdict.great { color: var(--green); }
     .card-verdict.meh { color: var(--mustard); }
 
+    /* ===== VERDICT STRIP ===== */
+    .verdict-strip {
+      background: var(--ink);
+      border-top: 4px solid var(--red);
+      border-bottom: 4px solid var(--red);
+      padding: 40px;
+    }
+    .verdict-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .verdict-strip-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.45);
+      margin-bottom: 12px;
+    }
+    .verdict-strip-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      font-style: italic;
+      color: var(--paper);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .verdict-strip-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.45);
+    }
+    .verdict-strip-score {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 9vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) {
+      .verdict-strip { padding: 32px 20px; }
+    }
+
     /* ===== RANT SCALE ===== */
     .rant-scale {
       background: var(--ink);
@@ -614,7 +715,14 @@
       line-height: 1.55;
     }
     .manifesto-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .manifesto-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .manifesto-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--paper);
+      opacity: 0.75;
+      display: flex;
+      align-items: flex-start;
+    }
 
     /* ===== SUBMIT SECTION ===== */
     .submit-section {
@@ -756,6 +864,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      gap: 40px;
       padding-bottom: 32px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       margin-bottom: 28px;
@@ -788,7 +897,8 @@
       text-transform: uppercase;
       margin-top: 4px;
     }
-    .footer-cities h4 {
+    .footer-cities h4,
+    .footer-nav h4 {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.2em;
@@ -800,6 +910,21 @@
       font-size: 0.85rem;
       color: rgba(245,240,232,0.5);
       line-height: 1.6;
+    }
+    .footer-nav ul {
+      list-style: none;
+    }
+    .footer-nav li {
+      margin-bottom: 6px;
+    }
+    .footer-nav a {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover {
+      color: var(--paper);
     }
     .footer-bottom {
       display: flex;
@@ -859,12 +984,16 @@
     .community-card {
       background: var(--white);
       border: 1px solid var(--rule);
-      border-top: 4px solid var(--mustard);
+      border-left: 4px solid var(--mustard);
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+    .community-card.card-good  { border-left-color: var(--green); }
+    .community-card.card-meh   { border-left-color: var(--mustard); }
+    .community-card.card-bad   { border-left-color: var(--red); }
+    .community-card.card-crime { border-left-color: #8B0000; }
     .community-card-header {
       display: flex;
       align-items: flex-start;
@@ -907,8 +1036,8 @@
     .community-author { font-weight: 500; color: var(--ink); }
     .community-tag {
       display: inline-block;
-      background: var(--cream);
-      border: 1px solid var(--rule);
+      background: transparent;
+      border: 1px solid currentColor;
       font-family: 'DM Mono', monospace;
       font-size: 0.6rem;
       letter-spacing: 0.12em;
@@ -916,6 +1045,10 @@
       padding: 3px 8px;
       color: var(--mid);
     }
+    .community-tag.tag-good  { color: var(--green); }
+    .community-tag.tag-meh   { color: var(--mustard); }
+    .community-tag.tag-bad   { color: var(--red); }
+    .community-tag.tag-crime { color: #8B0000; }
     .rants-loading, .rants-empty {
       max-width: 1200px;
       margin: 0 auto;
@@ -948,8 +1081,6 @@
       margin-top: 12px;
     }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* Rating button JS */
   </style>
 </head>
 <body>
@@ -958,6 +1089,36 @@
   <div class="ticker">
     <div class="ticker-inner">
       LATEST RANT: That new burger spot on Coliseum — overpriced, underseasoned, overhyped &nbsp;★&nbsp; BREAKING: Local pizza chain still using 1987 recipe. We checked. &nbsp;★&nbsp; VERDICT: The best taco truck in Fort Wayne costs $3. The worst restaurant costs $35. Do the math. &nbsp;★&nbsp; WARNING: Do not order the "Chef's Special" unless you enjoy disappointment &nbsp;★&nbsp; LATEST RANT: That new burger spot on Coliseum — overpriced, underseasoned, overhyped &nbsp;★&nbsp; BREAKING: Local pizza chain still using 1987 recipe. We checked. &nbsp;★&nbsp; VERDICT: The best taco truck in Fort Wayne costs $3. The worst restaurant costs $35. Do the math. &nbsp;★&nbsp; WARNING: Do not order the "Chef's Special" unless you enjoy disappointment &nbsp;★&nbsp;
+    </div>
+  </div>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stats-strip-inner">
+      <div class="stats-item">
+        <span class="stats-num">24</span>
+        <span class="stats-label">Restaurants Rated</span>
+      </div>
+      <div class="stats-sep">/</div>
+      <div class="stats-item">
+        <span class="stats-num">3</span>
+        <span class="stats-label">Condemned</span>
+      </div>
+      <div class="stats-sep">/</div>
+      <div class="stats-item">
+        <span class="stats-num">0</span>
+        <span class="stats-label">Stars Given — We Use Numbers</span>
+      </div>
+      <div class="stats-sep">/</div>
+      <div class="stats-item">
+        <span class="stats-num">0</span>
+        <span class="stats-label">Comped Meals</span>
+      </div>
+      <div class="stats-sep">/</div>
+      <div class="stats-item">
+        <span class="stats-num">0</span>
+        <span class="stats-label">Sponsors</span>
+      </div>
     </div>
   </div>
 
@@ -978,7 +1139,10 @@
         <li><a href="#submit">Submit a Rant</a></li>
       </ul>
       <div class="nav-date" id="nav-date"></div>
-      <div class="nav-search" id="search-trigger">🔍 Search reviews</div>
+      <button class="nav-search" id="search-trigger" type="button">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.5"/><line x1="9" y1="9" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Search reviews
+      </button>
     </div>
   </nav>
 
@@ -992,7 +1156,7 @@
           placeholder="Search restaurants, ratings, keywords..."
           style="flex:1; background:var(--white); border:none; border-bottom:3px solid var(--red); padding:16px 20px; font-family:'DM Sans',sans-serif; font-size:1.1rem; color:var(--ink); outline:none;"
         />
-        <button onclick="closeSearch()" style="background:none; border:none; color:var(--white); font-size:1.4rem; cursor:pointer; padding:8px;">✕</button>
+        <button onclick="closeSearch()" style="background:none; border:none; color:var(--white); font-size:1.4rem; cursor:pointer; padding:8px;">&#10005;</button>
       </div>
       <div id="search-results" style="display:flex; flex-direction:column; gap:10px; max-height:70vh; overflow-y:auto;"></div>
       <div id="search-empty" style="display:none; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--mid); letter-spacing:0.1em; margin-top:20px;">NO RESULTS FOUND</div>
@@ -1132,6 +1296,18 @@
     </div>
   </div>
 
+  <!-- Verdict Strip -->
+  <div class="verdict-strip">
+    <div class="verdict-strip-inner">
+      <div>
+        <div class="verdict-strip-eyebrow">Tonight's Verdict</div>
+        <div class="verdict-strip-name">Trolley Steaks and Seafood</div>
+        <div class="verdict-strip-sub">Steakhouse · Fort Wayne, IN · A Crime</div>
+      </div>
+      <div class="verdict-strip-score">2</div>
+    </div>
+  </div>
+
   <!-- Reader Rants — Pre-loaded editorial reviews -->
   <div class="section-rule" id="community-rants-header"><h2>Reader Rants</h2></div>
 
@@ -1148,12 +1324,12 @@
     <div class="community-rants-grid" id="static-reviews-grid">
 
       <!-- Mo's Tacos -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Mo's Tacos</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">This place does not miss. Not once. Not ever. I have eaten here more times than I can count and I have never walked away disappointed. The Taco Traditional is exactly what it should be. The MO's Taco is the move if you want to understand what this place is about. The Big Burrito, Wet Burrito, and Enchiladas are all worth your attention. No wait. Fair prices. Repeat customer for life.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1162,12 +1338,12 @@
       </div>
 
       <!-- Mercado -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Mercado</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">The best Mexican restaurant in Fort Wayne. Full stop. We thought we had found the ceiling with Tequila out southwest, and then Mercado raised the bar so high that everything else has to answer for itself. The flavor here is not playing around — sharper, more intentional, more complex than the competition. You will pay more. You will also eat food that tastes like someone in the kitchen actually cared.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1176,12 +1352,12 @@
       </div>
 
       <!-- Salvatori's -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Salvatori's Fort Wayne North</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">Salvatori's could put Casa Grande out of business and I say that knowing what Casa Grande means to people here. Everything we had was delicious and cooked to perfection. The bread is made fresh and it comes with the meal and it will ruin you for lesser bread. Bar area seating is the right call. This is a place that has figured out what it is and executes it consistently.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1190,12 +1366,12 @@
       </div>
 
       <!-- La Margarita -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">La Margarita</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">One of my favorite places to eat in Fort Wayne and it has been that way for a long time. Never bad food. Never bad service. Those two sentences together describe a standard that most restaurants in this city cannot meet on their best days. La Margarita meets it every time. The south side does not always get its due when people talk about where to eat in this city. This is the reason that oversight is a mistake.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1204,12 +1380,12 @@
       </div>
 
       <!-- Black Canyon -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Black Canyon Restaurant</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">The 10oz filet was cooked perfectly. I could not have done better at home and I take my steaks seriously. Black Canyon actually knows what medium rare means and executes it without hedging. The steak arrived at the right temperature, with the right crust, and the right internal color. In a city where ordering a steak is sometimes a gamble, Black Canyon removes the uncertainty.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1218,12 +1394,12 @@
       </div>
 
       <!-- JK O'Donnell's -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">J K O'Donnell's</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">One of my favorite places in Fort Wayne, downtown edition. The Man Superman drink is the best thing happening right now in this city and if you have not had it yet you are operating on incomplete information. The food is always great. The staff is stellar. Shout out to McLovin — you know who you are. If you are making a downtown Fort Wayne itinerary and JK O'Donnell's is not on it, fix that.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1232,12 +1408,12 @@
       </div>
 
       <!-- Clara's Pizza King -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Clara's Pizza King</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">My favorite pizza in Fort Wayne and it has been for as long as I can remember. Clara's knows what it is, has always known what it is, and has never felt the need to reinvent itself. The crust is right. The sauce is right. The ratios are right. If you grew up in Fort Wayne and did not grow up eating Clara's, I feel bad for you and think you should go correct that immediately.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1246,12 +1422,12 @@
       </div>
 
       <!-- Taco Bell Reckeweg -->
-      <div class="community-card">
+      <div class="community-card card-crime">
         <div class="community-card-header">
           <div class="community-restaurant">Taco Bell — Reckeweg Rd</div>
           <div class="community-score score-bad">1–2</div>
         </div>
-        <span class="community-tag">A Crime</span>
+        <span class="community-tag tag-crime">A Crime</span>
         <p class="community-rant-text">The drive-thru service was so bad I told them to keep my order and pulled off without it. I left Taco Bell without food and felt better about it. That is how bad it was. Staffed with disrespectful employees and limited supervision. There are other Taco Bell locations in this city that function like normal restaurants. This is not one of them. Avoid by address.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1260,12 +1436,12 @@
       </div>
 
       <!-- Trolley Steaks -->
-      <div class="community-card">
+      <div class="community-card card-crime">
         <div class="community-card-header">
           <div class="community-restaurant">Trolley Steaks and Seafood</div>
           <div class="community-score score-bad">1–2</div>
         </div>
-        <span class="community-tag">A Crime</span>
+        <span class="community-tag tag-crime">A Crime</span>
         <p class="community-rant-text">First time eating here and it will be the last. The food took forever. The serving dishes were dirty. My Old Fashioned glass was dirty before I even started drinking. Four people at the table all ordered different things and all walked away unsatisfied. That is not bad luck — that is a kitchen with a consistency problem and a front of house that is not paying attention. Fort Wayne has better options at every price point.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1274,12 +1450,12 @@
       </div>
 
       <!-- McDonald's Goshen -->
-      <div class="community-card">
+      <div class="community-card card-crime">
         <div class="community-card-header">
           <div class="community-restaurant">McDonald's — Goshen Rd</div>
           <div class="community-score score-bad">1–2</div>
         </div>
-        <span class="community-tag">A Crime</span>
+        <span class="community-tag tag-crime">A Crime</span>
         <p class="community-rant-text">All the buns were hard and stale. Everything tasted like it had been microwaved back to life from a previous shift. The Goshen Road location is a lost cause. There is no reason to stop here when the Coliseum location exists — management there is involved and the operation runs like it should. Do yourself a favor and drive the extra mile.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1288,12 +1464,12 @@
       </div>
 
       <!-- Hideout 125 -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Hideout 125</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">We went specifically for the Old Fashioned and it delivered. The atmosphere and vibe at Hideout 125 are second to none in Fort Wayne. Shout out to Noah, the manager, who took care of our table like we were regulars even on our first visit. That kind of hospitality is not something you can train into people who do not already have it. The cocktail program here is serious. Go for the Old Fashioned. Come back regularly.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1302,12 +1478,12 @@
       </div>
 
       <!-- Hall's Drive In -->
-      <div class="community-card">
+      <div class="community-card card-meh">
         <div class="community-card-header">
           <div class="community-restaurant">Hall's Original Drive In</div>
           <div class="community-score score-meh">5–6</div>
         </div>
-        <span class="community-tag">Meh</span>
+        <span class="community-tag tag-meh">Meh</span>
         <p class="community-rant-text">The food is a dice roll and the dice do not always land in your favor. I tested the pan fried Cod dinner two days in a row — day one was fantastic, day two was nowhere near as good. Same dish, same location, wildly different result. On a good night Hall's is a solid south side classic with a wait staff that genuinely takes care of you. On a bad night the kitchen is carrying the place on atmosphere alone. Keep coming back, keep hoping.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1316,12 +1492,12 @@
       </div>
 
       <!-- Casa Grande -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Casa Grande</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">One of my favorite Mexican restaurants in Fort Wayne through years of consistent performance. I have never been disappointed here and everyone I have brought for the first time has left as a return customer. There are two locations — both are good but the Dupont location has the edge on plating and presentation. The kind of neighborhood restaurant that Fort Wayne should be proud of.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1330,12 +1506,12 @@
       </div>
 
       <!-- Big Apple Pizza -->
-      <div class="community-card">
+      <div class="community-card card-bad">
         <div class="community-card-header">
           <div class="community-restaurant">Big Apple Pizza</div>
           <div class="community-score score-bad">3–4</div>
         </div>
-        <span class="community-tag">Bad</span>
+        <span class="community-tag tag-bad">Bad</span>
         <p class="community-rant-text">Updated review because this place used to be a must-visit and it is not that anymore. I have been here over a dozen times. The early visits were great — the pizza was fantastic, the garlic knots were worth the trip. Something changed. The quality dropped and kept dropping. Big Apple was a legitimate Fort Wayne pizza destination for years. Whatever happened in the kitchen, the result is a place coasting on a reputation it is no longer earning.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1344,12 +1520,12 @@
       </div>
 
       <!-- Old Gas House -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Old Gas House Restaurant</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">We eat here once a week and we always leave fat and happy. The Old Gas House is one of those Fort Wayne institutions that locals know about and outsiders discover with a look of surprise on their face — surprised that a building this old is serving food this consistently good. The location on the river is a bonus. The food would be worth it without the view. Never a bad meal here. Never a bad experience.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1358,12 +1534,12 @@
       </div>
 
       <!-- Breakfast Clubb -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Breakfast Clubb</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">Top three breakfast spots in Fort Wayne and I will not hear arguments. Breakfast Clubb has earned its reputation and continues to earn it every time I walk through the door. The portions are honest. The food is cooked right. The coffee situation is handled. This is the place you take visitors when you want to show them what Fort Wayne can do. Go early or accept the wait — the crowd knows what it is doing.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1372,12 +1548,12 @@
       </div>
 
       <!-- Blaze Pizza -->
-      <div class="community-card">
+      <div class="community-card card-meh">
         <div class="community-card-header">
           <div class="community-restaurant">Blaze Pizza</div>
           <div class="community-score score-meh">5–6</div>
         </div>
-        <span class="community-tag">Meh</span>
+        <span class="community-tag tag-meh">Meh</span>
         <p class="community-rant-text">It is like going to Subway except for pizza and I do not mean that as a compliment. Our order was lost, then undercooked, then lost again in one lunch visit. The pizza itself is fine when it arrives intact but Blaze has an operational consistency problem at this location they have not fixed. On a slow day this is solid fast-casual pizza. On a busy day you are rolling the dice on whether your order makes it to you.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1386,12 +1562,12 @@
       </div>
 
       <!-- Birrieria La Cabana -->
-      <div class="community-card">
+      <div class="community-card card-bad">
         <div class="community-card-header">
           <div class="community-restaurant">Birrieria La Cabaña</div>
           <div class="community-score score-bad">3–4</div>
         </div>
-        <span class="community-tag">Bad</span>
+        <span class="community-tag tag-bad">Bad</span>
         <p class="community-rant-text">The food was bland. The main ingredient in the guacamole was onion — not avocado, onion. The birria had no seasoning. Not even salt. The birria. Fort Wayne's Mexican food scene has real options and this is not one of them. When the signature dish of a Mexican restaurant tastes like it forgot to season itself, there is nothing left to recommend. Skip it.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1400,12 +1576,12 @@
       </div>
 
       <!-- Henry's -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Henry's Restaurant</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">Always a great experience at Henry's. The food is fantastic and the service is great. The menu is not over-expanded — everything on it is actually good, which is more discipline than most Fort Wayne restaurants show. If you are in the Fort you have to try it. This is a downtown gem that does not oversell itself and does not need to. The food does the talking.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1414,12 +1590,12 @@
       </div>
 
       <!-- Club Soda -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Club Soda</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">Always a good spot when you are downtown. The staff, food, and drinks here are in the top 10% of the city — that is not a low bar, that is a real statement about what Club Soda has built over the years. The desserts are worth a mention and rarely get one. If you are doing downtown Fort Wayne and you skip Club Soda, you made a mistake. Correct it next time.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1428,12 +1604,12 @@
       </div>
 
       <!-- IHOP W Jefferson -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">IHOP — W Jefferson Blvd</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">There is a stellar crew working at the Jefferson location. Hospitality is phenomenal and that is not something you expect to say about an IHOP. The food is what it is — it is IHOP — but when the staff runs the room this well, the whole experience gets elevated. Not every location operates like this. This one does. Worth the stop.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1442,12 +1618,12 @@
       </div>
 
       <!-- Black Dog Pub -->
-      <div class="community-card">
+      <div class="community-card card-good">
         <div class="community-card-header">
           <div class="community-restaurant">Black Dog Pub</div>
           <div class="community-score score-good">7–8</div>
         </div>
-        <span class="community-tag">Must Visit</span>
+        <span class="community-tag tag-good">Must Visit</span>
         <p class="community-rant-text">Good variety of drinks with beer leading the charge, but there are some surprise deals on the food side that most people overlook. The waitress we had was quick and had the whole table taken care of all night without being asked twice for anything. The atmosphere is a five — this place has figured out what a neighborhood pub should feel like. Definitely recommend.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1456,12 +1632,12 @@
       </div>
 
       <!-- Crust Brewing -->
-      <div class="community-card">
+      <div class="community-card card-bad">
         <div class="community-card-header">
           <div class="community-restaurant">Crust Brewing — Rosemont, IL</div>
           <div class="community-score score-bad">3–4</div>
         </div>
-        <span class="community-tag">Bad</span>
+        <span class="community-tag tag-bad">Bad</span>
         <p class="community-rant-text">Walking in I was hit with a wall of noise and chaos with no real theme — just a jumble of everything happening at once. Ordered the Philly Za pizza. Big mistake. A Philly cheesesteak pizza should have steak, peppers, and cheese in some recognizable proportion. What arrived was a soggy mess with ingredients that did not belong together and none of them cooked to the right temperature. The concept is interesting on paper. The execution is not there.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1470,12 +1646,12 @@
       </div>
 
       <!-- Raising Cane's -->
-      <div class="community-card">
+      <div class="community-card card-bad">
         <div class="community-card-header">
           <div class="community-restaurant">Raising Cane's Chicken Fingers</div>
           <div class="community-score score-bad">3–4</div>
         </div>
-        <span class="community-tag">Bad</span>
+        <span class="community-tag tag-bad">Bad</span>
         <p class="community-rant-text">Not sure what all the hype is for this place. It is chicken. That is it. I had it for the first time and it is not on my priority list to revisit. Is it good? Yes. Is it excellent? No. The menu is so limited that if you do not love their specific style of chicken you have nowhere to go. Fort Wayne has better chicken options that do not come with this much marketing attached to them.</p>
         <div class="community-footer">
           <span class="community-author">The Rant Desk</span>
@@ -1527,10 +1703,30 @@
         <p>Starting in Fort Wayne. Going national. One rant at a time.</p>
       </div>
       <div class="manifesto">
-        <div class="manifesto-item"><div class="manifesto-icon">💰</div><div>We always pay for our own food. No comped meals. No PR dinners. No "invited tastings."</div></div>
-        <div class="manifesto-item"><div class="manifesto-icon">🚫</div><div>No advertisers. No sponsored content. No restaurant can buy a better review.</div></div>
-        <div class="manifesto-item"><div class="manifesto-icon">📍</div><div>Fort Wayne first — but we're coming to your city. Watch this space.</div></div>
-        <div class="manifesto-item"><div class="manifesto-icon">✍️</div><div>Real opinions from real people who eat real food. Novel concept, we know.</div></div>
+        <div class="manifesto-item">
+          <div class="manifesto-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><line x1="9" y1="2" x2="9" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 5.5C13 4.12 11.21 3 9 3C6.79 3 5 4.12 5 5.5C5 6.88 6.79 8 9 8C11.21 8 13 9.12 13 10.5C13 11.88 11.21 13 9 13C6.79 13 5 11.88 5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>We always pay for our own food. No comped meals. No PR dinners. No "invited tastings."</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="4" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>No advertisers. No sponsored content. No restaurant can buy a better review.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2C6.24 2 4 4.24 4 7C4 10.5 9 16 9 16C9 16 14 10.5 14 7C14 4.24 11.76 2 9 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="9" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <div>Fort Wayne first — but we're coming to your city. Watch this space.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M12 2L16 6L6 16H2V12L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="5" x2="13" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>Real opinions from real people who eat real food. Novel concept, we know.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1549,8 +1745,6 @@
       </div>
     </div>
     <div>
-      <!-- Netlify Forms: data-netlify="true" tells Netlify to capture this form.
-           The hidden input[name="form-name"] is required by Netlify. -->
       <form
         id="rant-form"
         name="rant-submission"
@@ -1558,9 +1752,7 @@
         data-netlify-honeypot="bot-field"
         onsubmit="handleRantSubmit(event)"
       >
-        <!-- Required by Netlify -->
         <input type="hidden" name="form-name" value="rant-submission" />
-        <!-- Honeypot spam trap — hidden from real users -->
         <div style="display:none">
           <label>Don't fill this out: <input name="bot-field" /></label>
         </div>
@@ -1605,10 +1797,17 @@
             color: var(--mid);
             cursor: pointer;
             text-align: center;
-          ">📷 Upload photos of your meal (up to 5)</div>
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          ">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 5H5L6 3H10L11 5H14V13H2V5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Upload photos of your meal (up to 5)
+          </div>
           <div id="upload-preview" style="display:none; margin-top:10px;">
             <div id="upload-preview-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap:6px;"></div>
-            <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--green); margin-top:6px; letter-spacing:0.1em;" id="upload-count-label">✓ PHOTOS UPLOADED</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--green); margin-top:6px; letter-spacing:0.1em;" id="upload-count-label">PHOTOS UPLOADED</div>
             <div style="font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--mid); margin-top:2px; letter-spacing:0.08em; cursor:pointer; text-decoration:underline;" id="upload-add-more">+ Add more photos</div>
           </div>
         </div>
@@ -1635,6 +1834,14 @@
         <div class="footer-cities">
           <h4>Currently Covering</h4>
           <p>Fort Wayne, IN — and expanding.<br>Your city is next. Stay tuned.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#submit">Submit a Rant</a></li>
+            <li><a href="#scale">Our Rating Scale</a></li>
+            <li><a href="#about">About This Site</a></li>
+          </ul>
         </div>
       </div>
       <div class="footer-bottom">
@@ -1713,6 +1920,20 @@
       if (r.startsWith('7') || r.startsWith('8')) return 'Must Visit';
       return 'Legend';
     }
+    function cardBorderClass(rating) {
+      const r = rating || '';
+      if (r.startsWith('1') || r.startsWith('2')) return 'card-crime';
+      if (r.startsWith('3') || r.startsWith('4')) return 'card-bad';
+      if (r.startsWith('5') || r.startsWith('6')) return 'card-meh';
+      return 'card-good';
+    }
+    function tagColorClass(rating) {
+      const r = rating || '';
+      if (r.startsWith('1') || r.startsWith('2')) return 'tag-crime';
+      if (r.startsWith('3') || r.startsWith('4')) return 'tag-bad';
+      if (r.startsWith('5') || r.startsWith('6')) return 'tag-meh';
+      return 'tag-good';
+    }
 
     // ── Load approved community rants ────────────────────────────
     async function loadCommunityRants() {
@@ -1724,11 +1945,12 @@
 
         if (!Array.isArray(reviews) || reviews.length === 0) return;
 
-        // Get existing static grid and append to it
         const grid = document.getElementById('static-reviews-grid');
 
         reviews.forEach(r => {
-          const cls = scoreClass(r.rating);
+          const cls     = scoreClass(r.rating);
+          const cardCls = cardBorderClass(r.rating);
+          const tagCls  = tagColorClass(r.rating);
           let galleryHtml = '';
           if (r.photo_urls) {
             const urls = r.photo_urls.split(',').filter(u => u.trim());
@@ -1740,13 +1962,13 @@
             }
           }
           grid.innerHTML += `
-            <div class="community-card">
+            <div class="community-card ${cardCls}">
               ${galleryHtml}
               <div class="community-card-header">
                 <div class="community-restaurant">${escHtml(r.restaurant)}</div>
                 <div class="community-score ${cls}">${escHtml(r.rating)}</div>
               </div>
-              <span class="community-tag">${scoreVerdict(r.rating)}</span>
+              <span class="community-tag ${tagCls}">${scoreVerdict(r.rating)}</span>
               <p class="community-rant-text">${escHtml(r.rant)}</p>
               <div class="community-footer">
                 <span class="community-author">${escHtml(r.author)}</span>
@@ -1810,7 +2032,6 @@
 
       if (query.length < 2) return;
 
-      // Gather all static review cards
       const cards = document.querySelectorAll('.community-card');
       const matches = [];
 
@@ -1833,23 +2054,22 @@
       }
 
       matches.forEach(m => {
-        const scoreClass = m.tag === 'A Crime' || m.tag === 'Bad' ? '#C1240E' :
+        const scoreColor = m.tag === 'A Crime' || m.tag === 'Bad' ? '#C1240E' :
                            m.tag === 'Meh' ? '#E8A020' : '#1A6B3C';
         const snippet = m.rant.length > 120 ? m.rant.substring(0, 120) + '...' : m.rant;
         const el = document.createElement('div');
-        el.style.cssText = 'background:var(--white); padding:16px 20px; cursor:pointer; border-left:4px solid ' + scoreClass + ';';
+        el.style.cssText = 'background:var(--white); padding:16px 20px; cursor:pointer; border-left:4px solid ' + scoreColor + ';';
         el.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <div style="font-family:\'Playfair Display\',serif; font-weight:700; font-size:1rem; color:var(--ink);">${escHtml(m.restaurant)}</div>
+            <div style="font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; color:var(--ink);">${escHtml(m.restaurant)}</div>
             <div style="display:flex; gap:8px; align-items:center;">
-              <span style="font-family:\'DM Mono\',monospace; font-size:0.65rem; letter-spacing:0.1em; color:var(--mid);">${escHtml(m.tag)}</span>
-              <span style="font-family:\'Playfair Display\',serif; font-weight:900; font-size:1.1rem; color:${scoreClass};">${escHtml(m.score)}</span>
+              <span style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; color:var(--mid);">${escHtml(m.tag)}</span>
+              <span style="font-family:'Playfair Display',serif; font-weight:900; font-size:1.1rem; color:${scoreColor};">${escHtml(m.score)}</span>
             </div>
           </div>
           <div style="font-size:0.82rem; color:var(--smoke); line-height:1.5;">${escHtml(snippet)}</div>`;
         el.addEventListener('click', () => {
           closeSearch();
-          // Scroll to the matching card
           document.querySelectorAll('.community-card').forEach(card => {
             if (card.querySelector('.community-restaurant')?.textContent === m.restaurant) {
               card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1874,7 +2094,7 @@
           <img src="${url}" style="width:100%; height:80px; object-fit:cover; border:1px solid var(--rule);" />
         </div>`).join('');
       document.getElementById('photo-urls').value = uploadedUrls.join(',');
-      document.getElementById('upload-count-label').textContent = `✓ ${uploadedUrls.length} PHOTO${uploadedUrls.length > 1 ? 'S' : ''} UPLOADED`;
+      document.getElementById('upload-count-label').textContent = `${uploadedUrls.length} PHOTO${uploadedUrls.length > 1 ? 'S' : ''} UPLOADED`;
       document.getElementById('upload-preview').style.display = 'block';
       document.getElementById('upload-add-more').style.display = uploadedUrls.length >= 5 ? 'none' : 'block';
     }
