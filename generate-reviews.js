@@ -173,6 +173,183 @@ function pageHtml(r) {
 `;
 }
 
+// ---- guide page: curated best-of, grouped by tier, read-only from staticReviews ----
+const GUIDE_SECTIONS = [
+  { tier: 'Legend', label: 'Legends' },
+  { tier: 'Must Visit', label: 'Must Visits' },
+];
+
+function guidePageHtml(reviews) {
+  const sections = GUIDE_SECTIONS
+    .map(s => ({ ...s, entries: reviews.filter(r => r.tier === s.tier) }))
+    .filter(s => s.entries.length > 0);
+
+  const totalCount = sections.reduce((n, s) => n + s.entries.length, 0);
+  const title = 'Where to Eat in Fort Wayne — The Food Rantings Guide';
+  const description = `${totalCount} restaurants in Fort Wayne worth your time, hand-picked from our honest reviews. No sponsors. No comped meals. No mercy.`;
+  const canonicalUrl = `${SITE_URL}/guide/`;
+
+  let position = 0;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: title,
+    description,
+    itemListElement: sections.flatMap(s => s.entries.map(r => {
+      position++;
+      return {
+        '@type': 'ListItem',
+        position,
+        item: {
+          '@type': 'Restaurant',
+          name: r.restaurant,
+          url: `${SITE_URL}/review/${r.slug}/`,
+        },
+      };
+    })),
+  };
+
+  const sectionsHtml = sections.map(s => `
+      <section class="guide-section">
+        <h2 class="guide-section-title">${escHtml(s.label)}</h2>
+        <div class="guide-list">
+          ${s.entries.map((r, i) => `
+          <a class="guide-entry" href="/review/${escHtml(r.slug)}/">
+            <div class="guide-entry-index">${String(i + 1).padStart(2, '0')}</div>
+            <div class="guide-entry-body">
+              <div class="guide-entry-header">
+                <div class="guide-entry-name">${escHtml(r.restaurant)}</div>
+                <div class="guide-entry-score ${scoreClass(r.score)}">${escHtml(r.score)}</div>
+              </div>
+              <span class="guide-entry-tag ${cardBorderClass(r.score)}">${escHtml(r.tier)}</span>
+              <p class="guide-entry-excerpt">${escHtml(truncate(r.body, 200))}</p>
+              <span class="guide-entry-link">Read the full rant →</span>
+            </div>
+          </a>`).join('')}
+        </div>
+      </section>`).join('');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${escHtml(title)}</title>
+  <meta name="description" content="${escHtml(description)}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Food Rantings" />
+  <meta property="og:title" content="${escHtml(title)}" />
+  <meta property="og:description" content="${escHtml(description)}" />
+  <meta property="og:url" content="${canonicalUrl}" />
+  <meta property="og:image" content="${OG_IMAGE}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${escHtml(title)}" />
+  <meta name="twitter:description" content="${escHtml(description)}" />
+  <meta name="twitter:image" content="${OG_IMAGE}" />
+
+  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0D0D0D; --paper: #F5F0E8; --cream: #EDE8DC; --mustard: #E8A020;
+      --red: #C1240E; --green: #1A6B3C; --smoke: #2A2A2A; --mid: #6B6560;
+      --rule: #D4CEBE; --white: #FFFFFF;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); }
+    .wrap { max-width: 840px; margin: 0 auto; padding: 48px 24px 100px; }
+
+    header { text-align: center; margin-bottom: 20px; }
+    header a { text-decoration: none; }
+    .word-food { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase; color: var(--ink); }
+    .word-rantings { display: block; font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; font-style: italic; color: var(--red); line-height: 0.92; margin-top: -2px; }
+    .nav-tagline { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
+
+    .guide-hero { text-align: center; padding: 40px 0 56px; border-bottom: 2px solid var(--ink); margin-bottom: 56px; }
+    .guide-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+    .guide-headline { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; font-style: italic; line-height: 1.05; margin-bottom: 20px; }
+    .guide-sub { font-size: 1.05rem; line-height: 1.7; color: var(--smoke); max-width: 560px; margin: 0 auto; }
+
+    .guide-section { margin-bottom: 64px; }
+    .guide-section-title {
+      font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink);
+      display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+    }
+    .guide-section-title::after { content: ''; flex: 1; height: 2px; background: var(--ink); }
+
+    .guide-list { display: flex; flex-direction: column; }
+    .guide-entry {
+      display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--rule);
+      text-decoration: none; color: inherit; transition: background 0.15s;
+    }
+    .guide-entry:hover { background: rgba(13,13,13,0.02); }
+    .guide-entry:last-child { border-bottom: none; }
+    .guide-entry-index {
+      font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--mid);
+      flex-shrink: 0; width: 28px; padding-top: 4px;
+    }
+    .guide-entry-body { flex: 1; min-width: 0; }
+    .guide-entry-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+    .guide-entry-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+    .guide-entry-score { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; flex-shrink: 0; }
+    .guide-entry-score.score-good { color: var(--green); }
+    .guide-entry-score.score-meh { color: var(--mustard); }
+    .guide-entry-score.score-bad { color: var(--red); }
+    .guide-entry-tag {
+      display: inline-block; border: 1px solid currentColor; font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 9px; margin-bottom: 14px;
+    }
+    .guide-entry-tag.card-good  { color: var(--green); }
+    .guide-entry-tag.card-meh   { color: var(--mustard); }
+    .guide-entry-tag.card-bad   { color: var(--red); }
+    .guide-entry-tag.card-crime { color: #8B0000; }
+    .guide-entry-excerpt { font-size: 0.95rem; line-height: 1.65; color: var(--smoke); margin-bottom: 12px; }
+    .guide-entry-link { font-size: 0.8rem; font-weight: 600; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 1px; }
+    .guide-entry:hover .guide-entry-link { color: var(--red); border-color: var(--red); }
+
+    .back { display: inline-block; margin-top: 8px; font-weight: 600; font-size: 0.85rem; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    .back:hover { color: var(--red); border-color: var(--red); }
+
+    @media (max-width: 600px) {
+      .guide-entry { gap: 14px; }
+      .guide-entry-name { font-size: 1.25rem; }
+      .guide-entry-score { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a href="/">
+        <div class="nav-tagline">Fort Wayne's Most Honest Food Publication</div>
+        <div class="word-food">Food</div>
+        <div class="word-rantings">Rantings</div>
+      </a>
+    </header>
+
+    <div class="guide-hero">
+      <div class="guide-eyebrow">The Food Rantings Guide</div>
+      <h1 class="guide-headline">Where to Eat<br>in Fort Wayne.</h1>
+      <p class="guide-sub">${totalCount} restaurants that earned it. We paid for every meal, named the bad ones too, and this is what's left standing.</p>
+    </div>
+
+    ${sectionsHtml}
+
+    <a class="back" href="/#community-rants-header">← All Reader Rants</a>
+  </div>
+</body>
+</html>
+`;
+}
+
 // ---- generate ----
 const outDir = path.join(ROOT, 'review');
 fs.rmSync(outDir, { recursive: true, force: true });
@@ -188,3 +365,10 @@ for (const r of staticReviews) {
   count++;
 }
 console.log(`generate-reviews.js: wrote ${count} review permalink pages to /review/`);
+
+// ---- generate the guide page ----
+const guideDir = path.join(ROOT, 'guide');
+fs.rmSync(guideDir, { recursive: true, force: true });
+fs.mkdirSync(guideDir, { recursive: true });
+fs.writeFileSync(path.join(guideDir, 'index.html'), Buffer.from(guidePageHtml(staticReviews), 'utf8'));
+console.log('generate-reviews.js: wrote /guide/');
