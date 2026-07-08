@@ -120,7 +120,7 @@ const staticReviews = [
     "date": "Oct 2023",
     "cuisine": "Fast Food",
     "neighborhood": "North",
-    "area": "Washington"
+    "area": "Goshen"
   },
   {
     "slug": "hideout-125",
@@ -287,7 +287,7 @@ const staticReviews = [
     "author": "The Rant Desk",
     "date": "Jan 2025",
     "cuisine": "Fast Food",
-    "neighborhood": "",
-    "area": ""
+    "neighborhood": "North",
+    "area": "Coliseum"
   }
 ];
