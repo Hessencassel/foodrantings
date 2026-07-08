@@ -609,6 +609,165 @@
       .verdict-strip { padding: 32px 20px; }
     }
 
+    /* ===== NEWSLETTER STRIP ===== */
+    .newsletter-strip {
+      background: var(--cream);
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding: 48px 40px;
+    }
+    .newsletter-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .newsletter-copy { max-width: 520px; }
+    .newsletter-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .newsletter-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .newsletter-sub {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--smoke);
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 420px;
+    }
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-bottom: 2px solid var(--ink);
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input:focus { border-color: var(--red); }
+    .newsletter-input::placeholder { color: var(--mid); }
+    .newsletter-btn {
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      padding: 12px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: var(--red); }
+    .newsletter-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .newsletter-msg {
+      width: 100%;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+      display: none;
+    }
+    .newsletter-msg.success { color: var(--green); }
+    .newsletter-msg.error { color: var(--red); }
+    @media (max-width: 900px) {
+      .newsletter-strip { padding: 36px 20px; }
+      .newsletter-strip-inner { flex-direction: column; align-items: flex-start; }
+      .newsletter-form { max-width: 100%; }
+    }
+
+    /* ===== FOOTER NEWSLETTER ===== */
+    .footer-newsletter {
+      flex: 1 1 240px;
+      min-width: 220px;
+    }
+    .footer-newsletter h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 10px;
+    }
+    .footer-newsletter p {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.5);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .footer-newsletter-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .footer-newsletter-input {
+      flex: 1;
+      min-width: 160px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 2px solid var(--mustard);
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--paper);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .footer-newsletter-input::placeholder { color: rgba(245,240,232,0.4); }
+    .footer-newsletter-input:focus { border-color: var(--red); }
+    .footer-newsletter-btn {
+      background: var(--mustard);
+      color: var(--ink);
+      border: none;
+      padding: 10px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .footer-newsletter-btn:hover { background: var(--red); color: var(--paper); }
+    .footer-newsletter-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .footer-newsletter-msg {
+      width: 100%;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      margin-top: 8px;
+      display: none;
+    }
+    .footer-newsletter-msg.success { color: #7BBF8C; }
+    .footer-newsletter-msg.error { color: var(--red); }
+
     /* ===== RANT SCALE ===== */
     .rant-scale {
       background: var(--ink);
@@ -864,6 +1023,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      flex-wrap: wrap;
       gap: 40px;
       padding-bottom: 32px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -1658,7 +1818,37 @@
           <span>Jan 2025</span>
         </div>
       </div>
+    </div>
   </div>
+
+  <!-- Newsletter Signup -->
+  <div class="newsletter-strip">
+    <div class="newsletter-strip-inner">
+      <div class="newsletter-copy">
+        <div class="newsletter-eyebrow">Before You Go</div>
+        <div class="newsletter-headline">The Fort Wayne Food Truth. In Your Inbox.</div>
+        <p class="newsletter-sub">Every new rant, every verdict, every restaurant we name. No spam. No sponsored content. Unsubscribe whenever you've had enough honesty.</p>
+      </div>
+      <form
+        id="newsletter-form-inline"
+        name="newsletter-signup"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        class="newsletter-form"
+        onsubmit="handleNewsletterSubmit(event, 'inline')"
+      >
+        <input type="hidden" name="form-name" value="newsletter-signup" />
+        <div style="display:none">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </div>
+        <label for="newsletter-email-inline" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">Email address</label>
+        <input type="email" id="newsletter-email-inline" name="email" class="newsletter-input" placeholder="you@somewhere.com" required />
+        <button type="submit" class="newsletter-btn" id="newsletter-btn-inline">Get The Rants →</button>
+        <div class="newsletter-msg" id="newsletter-msg-inline"></div>
+      </form>
+    </div>
+  </div>
+
   <div class="rant-scale" id="scale">
     <div class="rant-scale-inner">
       <h2>The Food Rantings Scale</h2>
@@ -1843,6 +2033,27 @@
             <li><a href="#about">About This Site</a></li>
           </ul>
         </div>
+        <div class="footer-newsletter">
+          <h4>Get The Rants</h4>
+          <p>The Fort Wayne food truth in your inbox. No spam. No sponsors.</p>
+          <form
+            id="newsletter-form-footer"
+            name="newsletter-signup"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            class="footer-newsletter-form"
+            onsubmit="handleNewsletterSubmit(event, 'footer')"
+          >
+            <input type="hidden" name="form-name" value="newsletter-signup" />
+            <div style="display:none">
+              <label>Don't fill this out: <input name="bot-field" /></label>
+            </div>
+            <label for="newsletter-email-footer" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">Email address</label>
+            <input type="email" id="newsletter-email-footer" name="email" class="footer-newsletter-input" placeholder="you@somewhere.com" required />
+            <button type="submit" class="footer-newsletter-btn" id="newsletter-btn-footer">Sign Up →</button>
+            <div class="footer-newsletter-msg" id="newsletter-msg-footer"></div>
+          </form>
+        </div>
       </div>
       <div class="footer-bottom">
         <span>© 2025 FoodRantings.com — We paid for every meal reviewed on this site.</span>
@@ -1902,6 +2113,50 @@
         btn.textContent = 'Submit My Rant →';
         errBox.textContent = 'Something went wrong. Try again in a moment.';
         errBox.style.display = 'block';
+      }
+    }
+
+    // ── Newsletter signup (shared by footer + inline placements) ──
+    const newsletterButtonText = {
+      inline: 'Get The Rants →',
+      footer: 'Sign Up →',
+    };
+
+    async function handleNewsletterSubmit(e, placement) {
+      e.preventDefault();
+      const form  = document.getElementById(`newsletter-form-${placement}`);
+      const btn   = document.getElementById(`newsletter-btn-${placement}`);
+      const msg   = document.getElementById(`newsletter-msg-${placement}`);
+      const input = form.querySelector('input[type="email"]');
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      msg.className = msg.className.replace(/\s*(success|error)\b/g, '');
+      msg.style.display = 'none';
+
+      try {
+        const data = new FormData(form);
+        const res  = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString(),
+        });
+
+        if (res.ok) {
+          msg.textContent = "You're in. Fort Wayne's honest food takes are headed your way.";
+          msg.classList.add('success');
+          msg.style.display = 'block';
+          input.value = '';
+          btn.textContent = 'Signed Up ✓';
+        } else {
+          throw new Error('Non-OK response');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = newsletterButtonText[placement] || 'Sign Up →';
+        msg.textContent = 'Something went wrong. Try again in a moment.';
+        msg.classList.add('error');
+        msg.style.display = 'block';
       }
     }
 
