@@ -110,7 +110,7 @@ function pageHtml(r) {
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -119,27 +119,27 @@ function pageHtml(r) {
       --rule: #D4CEBE; --white: #FFFFFF;
     }
     body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
-    header { text-align: center; margin-bottom: 40px; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 90px; }
+    header { text-align: center; margin-bottom: 48px; }
     header a { text-decoration: none; }
-    .word-food { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase; color: var(--ink); }
-    .word-rantings { display: block; font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; font-style: italic; color: var(--red); line-height: 0.92; margin-top: -2px; }
-    .nav-tagline { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
-    .card { border: 1px solid var(--rule); background: var(--white); padding: 32px; }
-    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
-    .restaurant { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; line-height: 1.2; }
-    .score { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1; flex-shrink: 0; }
+    .word-food { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 900; letter-spacing: 0.5em; text-transform: uppercase; color: var(--ink); }
+    .word-rantings { display: block; font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; font-style: italic; color: var(--red); line-height: 0.88; margin-top: -4px; letter-spacing: -0.02em; }
+    .nav-tagline { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
+    .card { border: 2px solid var(--ink); background: var(--white); box-shadow: 7px 7px 0 var(--ink); padding: 36px; }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+    .restaurant { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 900; line-height: 1.05; letter-spacing: -0.015em; }
+    .score { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; line-height: 0.9; flex-shrink: 0; }
     .score.score-bad { color: var(--red); }
     .score.score-meh { color: var(--mustard); }
     .score.score-good { color: var(--green); }
-    .tag { display: inline-block; border: 1px solid currentColor; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 20px; }
-    .tag.card-good  { color: var(--green); }
-    .tag.card-meh   { color: var(--mustard); }
-    .tag.card-bad   { color: var(--red); }
-    .tag.card-crime { color: #8B0000; }
-    .body-text { font-size: 1.02rem; line-height: 1.75; color: var(--smoke); margin-bottom: 24px; }
-    .meta { display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--rule); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--mid); letter-spacing: 0.06em; }
-    .back { display: inline-block; margin-top: 32px; font-weight: 600; font-size: 0.85rem; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    .tag { display: inline-block; background: var(--ink); color: var(--paper); font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 12px; margin-bottom: 22px; }
+    .tag.card-good  { background: var(--green); color: var(--paper); }
+    .tag.card-meh   { background: var(--mustard); color: var(--ink); }
+    .tag.card-bad   { background: var(--red); color: var(--paper); }
+    .tag.card-crime { background: #8B0000; color: var(--paper); }
+    .body-text { font-size: 1.05rem; line-height: 1.75; color: var(--smoke); margin-bottom: 26px; }
+    .meta { display: flex; justify-content: space-between; padding-top: 18px; border-top: 2px solid var(--ink); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--mid); letter-spacing: 0.06em; }
+    .back { display: inline-block; margin-top: 36px; font-weight: 700; font-size: 0.85rem; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
     .back:hover { color: var(--red); border-color: var(--red); }
   </style>
 </head>
@@ -255,7 +255,7 @@ function guidePageHtml(reviews) {
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -264,64 +264,64 @@ function guidePageHtml(reviews) {
       --rule: #D4CEBE; --white: #FFFFFF;
     }
     body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); }
-    .wrap { max-width: 840px; margin: 0 auto; padding: 48px 24px 100px; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 100px; }
 
-    header { text-align: center; margin-bottom: 20px; }
+    header { text-align: center; margin-bottom: 24px; }
     header a { text-decoration: none; }
-    .word-food { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase; color: var(--ink); }
-    .word-rantings { display: block; font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; font-style: italic; color: var(--red); line-height: 0.92; margin-top: -2px; }
-    .nav-tagline { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
+    .word-food { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 900; letter-spacing: 0.5em; text-transform: uppercase; color: var(--ink); }
+    .word-rantings { display: block; font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; font-style: italic; color: var(--red); line-height: 0.88; margin-top: -4px; letter-spacing: -0.02em; }
+    .nav-tagline { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
 
-    .guide-hero { text-align: center; padding: 40px 0 56px; border-bottom: 2px solid var(--ink); margin-bottom: 56px; }
-    .guide-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
-    .guide-headline { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; font-style: italic; line-height: 1.05; margin-bottom: 20px; }
-    .guide-sub { font-size: 1.05rem; line-height: 1.7; color: var(--smoke); max-width: 560px; margin: 0 auto; }
+    .guide-hero { text-align: center; padding: 44px 0 60px; border-bottom: 3px solid var(--ink); margin-bottom: 60px; }
+    .guide-eyebrow { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.74rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--red); margin-bottom: 18px; }
+    .guide-headline { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; font-style: italic; line-height: 0.96; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .guide-sub { font-size: 1.08rem; line-height: 1.65; color: var(--smoke); max-width: 560px; margin: 0 auto; }
 
-    .guide-section { margin-bottom: 64px; }
+    .guide-section { margin-bottom: 68px; }
     .guide-section-title {
-      font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 500;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink);
-      display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+      font-family: 'DM Mono', monospace; font-size: 0.88rem; font-weight: 500;
+      letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink);
+      display: flex; align-items: center; gap: 18px; margin-bottom: 36px;
     }
-    .guide-section-title::after { content: ''; flex: 1; height: 2px; background: var(--ink); }
+    .guide-section-title::after { content: ''; flex: 1; height: 3px; background: var(--ink); }
 
     .guide-list { display: flex; flex-direction: column; }
     .guide-entry {
-      display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--rule);
-      text-decoration: none; color: inherit; transition: background 0.15s;
+      display: flex; gap: 26px; padding: 30px 0; border-bottom: 2px solid var(--rule);
+      text-decoration: none; color: inherit; transition: background 0.15s, padding-left 0.15s;
     }
-    .guide-entry:hover { background: rgba(13,13,13,0.02); }
+    .guide-entry:hover { background: rgba(13,13,13,0.025); padding-left: 8px; }
     .guide-entry:last-child { border-bottom: none; }
     .guide-entry-index {
-      font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--mid);
-      flex-shrink: 0; width: 28px; padding-top: 4px;
+      font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.15rem; color: var(--rule);
+      flex-shrink: 0; width: 40px; padding-top: 2px;
     }
     .guide-entry-body { flex: 1; min-width: 0; }
-    .guide-entry-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
-    .guide-entry-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
-    .guide-entry-score { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; flex-shrink: 0; }
+    .guide-entry-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+    .guide-entry-name { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 900; line-height: 1.08; letter-spacing: -0.015em; }
+    .guide-entry-score { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 900; line-height: 0.9; flex-shrink: 0; }
     .guide-entry-score.score-good { color: var(--green); }
     .guide-entry-score.score-meh { color: var(--mustard); }
     .guide-entry-score.score-bad { color: var(--red); }
     .guide-entry-tag {
-      display: inline-block; border: 1px solid currentColor; font-family: 'DM Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 9px; margin-bottom: 14px;
+      display: inline-block; background: var(--ink); color: var(--paper); font-family: 'DM Mono', monospace; font-weight: 500;
+      font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px;
     }
-    .guide-entry-tag.card-good  { color: var(--green); }
-    .guide-entry-tag.card-meh   { color: var(--mustard); }
-    .guide-entry-tag.card-bad   { color: var(--red); }
-    .guide-entry-tag.card-crime { color: #8B0000; }
-    .guide-entry-excerpt { font-size: 0.95rem; line-height: 1.65; color: var(--smoke); margin-bottom: 12px; }
-    .guide-entry-link { font-size: 0.8rem; font-weight: 600; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 1px; }
+    .guide-entry-tag.card-good  { background: var(--green); color: var(--paper); }
+    .guide-entry-tag.card-meh   { background: var(--mustard); color: var(--ink); }
+    .guide-entry-tag.card-bad   { background: var(--red); color: var(--paper); }
+    .guide-entry-tag.card-crime { background: #8B0000; color: var(--paper); }
+    .guide-entry-excerpt { font-size: 0.96rem; line-height: 1.65; color: var(--smoke); margin-bottom: 14px; }
+    .guide-entry-link { font-size: 0.8rem; font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 1px; }
     .guide-entry:hover .guide-entry-link { color: var(--red); border-color: var(--red); }
 
-    .back { display: inline-block; margin-top: 8px; font-weight: 600; font-size: 0.85rem; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
+    .back { display: inline-block; margin-top: 8px; font-weight: 700; font-size: 0.85rem; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--ink); }
     .back:hover { color: var(--red); border-color: var(--red); }
 
     @media (max-width: 600px) {
-      .guide-entry { gap: 14px; }
-      .guide-entry-name { font-size: 1.25rem; }
-      .guide-entry-score { font-size: 1.25rem; }
+      .guide-entry { gap: 16px; }
+      .guide-entry-name { font-size: 1.35rem; }
+      .guide-entry-score { font-size: 1.35rem; }
     }
   </style>
 </head>

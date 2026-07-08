@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Food Rantings — Honest. Savage. Fort Wayne.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -35,17 +35,18 @@
     .ticker {
       background: var(--ink);
       color: var(--paper);
-      padding: 8px 0;
+      padding: 10px 0;
       overflow: hidden;
       white-space: nowrap;
-      border-bottom: 3px solid var(--mustard);
+      border-bottom: 5px solid var(--mustard);
     }
     .ticker-inner {
       display: inline-block;
       animation: ticker 30s linear infinite;
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
     }
     .ticker-inner span {
       margin: 0 40px;
@@ -79,7 +80,7 @@
     }
     .stats-num {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-size: 1.65rem;
       font-weight: 900;
       line-height: 1;
       color: var(--white);
@@ -107,7 +108,7 @@
     /* ===== NAV ===== */
     nav {
       background: var(--paper);
-      border-bottom: 2px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -115,18 +116,19 @@
     .nav-top {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 40px 0;
+      padding: 24px 40px 0;
       text-align: center;
       border-bottom: 1px solid var(--rule);
-      padding-bottom: 16px;
+      padding-bottom: 20px;
     }
     .nav-tagline {
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.68rem;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--mid);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .nav-logo {
       line-height: 1;
@@ -135,8 +137,8 @@
       display: block;
       font-family: 'Playfair Display', serif;
       font-size: clamp(1rem, 2.2vw, 1.5rem);
-      font-weight: 700;
-      letter-spacing: 0.45em;
+      font-weight: 900;
+      letter-spacing: 0.5em;
       text-transform: uppercase;
       color: var(--ink);
       font-style: normal;
@@ -145,18 +147,18 @@
     .nav-logo .word-rantings {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
       font-weight: 900;
       font-style: italic;
       color: var(--red);
-      line-height: 0.92;
-      margin-top: -2px;
-      letter-spacing: -0.02em;
+      line-height: 0.88;
+      margin-top: -4px;
+      letter-spacing: -0.025em;
     }
     .nav-bottom {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 10px 40px;
+      padding: 14px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -167,15 +169,16 @@
       list-style: none;
     }
     .nav-links a {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--red); }
+    .nav-links a.flagship { color: var(--red); }
     .nav-search {
       display: flex;
       align-items: center;
@@ -201,11 +204,11 @@
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 48px 40px;
+      padding: 56px 40px;
       display: grid;
       grid-template-columns: 1fr 380px;
       gap: 48px;
-      border-bottom: 2px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
     }
 
     .hero-main {
@@ -218,11 +221,11 @@
       align-items: center;
       gap: 8px;
       font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .label-hot { color: var(--red); }
     .label-dot {
@@ -244,11 +247,11 @@
 
     .hero-headline {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-size: clamp(2.8rem, 6.4vw, 5.4rem);
       font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
     }
     .hero-headline em {
       font-style: italic;
@@ -256,10 +259,10 @@
     }
 
     .hero-deck {
-      font-size: 1.05rem;
-      line-height: 1.7;
+      font-size: 1.12rem;
+      line-height: 1.65;
       color: var(--smoke);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       max-width: 560px;
     }
 
@@ -271,34 +274,37 @@
       font-size: 0.7rem;
       color: var(--mid);
       letter-spacing: 0.08em;
-      margin-bottom: 24px;
-      padding-bottom: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 22px;
       border-bottom: 1px solid var(--rule);
     }
-    .hero-meta .author { color: var(--ink); font-weight: 500; }
+    .hero-meta .author { color: var(--ink); font-weight: 600; }
     .hero-meta .sep { color: var(--rule); }
 
     .rating-badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
-      border: 2px solid var(--ink);
-      margin-bottom: 24px;
+      gap: 16px;
+      padding: 16px 24px;
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      transform: rotate(-2deg);
+      box-shadow: 7px 7px 0 var(--ink);
+      margin-bottom: 32px;
     }
     .rating-score {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: 900;
-      line-height: 1;
+      line-height: 0.9;
     }
     .rating-score.terrible { color: var(--red); }
     .rating-score.great { color: var(--green); }
     .rating-score.meh { color: var(--mustard); }
     .rating-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
     .rating-stars { font-size: 1rem; letter-spacing: 2px; }
@@ -329,7 +335,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.85rem;
       letter-spacing: 0.06em;
       color: var(--ink);
@@ -350,11 +356,12 @@
     .sidebar-section:last-child { border-bottom: none; }
     .sidebar-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-weight: 500;
+      font-size: 0.66rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--mid);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -369,24 +376,26 @@
     .verdict-box {
       background: var(--ink);
       color: var(--paper);
-      padding: 24px;
+      padding: 28px;
+      border-left: 6px solid var(--mustard);
     }
     .verdict-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 900;
       font-style: italic;
-      margin-bottom: 12px;
-      line-height: 1.2;
+      margin-bottom: 14px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
     .verdict-text {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       line-height: 1.65;
       color: rgba(245,240,232,0.8);
     }
     .verdict-score {
-      margin-top: 16px;
-      padding-top: 16px;
+      margin-top: 18px;
+      padding-top: 18px;
       border-top: 1px solid rgba(255,255,255,0.15);
       display: flex;
       align-items: center;
@@ -394,7 +403,7 @@
     }
     .verdict-num {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 3.6rem;
       font-weight: 900;
       line-height: 1;
       color: var(--mustard);
@@ -417,11 +426,11 @@
     .mini-review:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .mini-score {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-size: 1.7rem;
       font-weight: 900;
       line-height: 1;
       flex-shrink: 0;
-      width: 36px;
+      width: 40px;
       text-align: center;
     }
     .mini-score.bad { color: var(--red); }
@@ -429,8 +438,8 @@
     .mini-score.good { color: var(--green); }
     .mini-info {}
     .mini-name {
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-weight: 700;
+      font-size: 0.92rem;
       margin-bottom: 2px;
     }
     .mini-tag {
@@ -447,22 +456,23 @@
       padding: 0 40px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 40px;
-      margin-top: 48px;
+      gap: 18px;
+      margin-bottom: 44px;
+      margin-top: 56px;
     }
     .section-rule h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: clamp(1.9rem, 3.4vw, 2.6rem);
       font-weight: 900;
       white-space: nowrap;
       font-style: italic;
+      letter-spacing: -0.015em;
     }
     .section-rule::before,
     .section-rule::after {
       content: '';
       flex: 1;
-      height: 2px;
+      height: 3px;
       background: var(--ink);
     }
     .section-rule::before { display: none; }
@@ -478,14 +488,15 @@
     }
 
     .review-card {
-      border: 1px solid var(--rule);
+      border: 2px solid var(--ink);
       background: var(--white);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 6px 6px 0 var(--ink);
+      transition: transform 0.15s, box-shadow 0.15s;
       cursor: pointer;
     }
     .review-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 4px 4px 0 var(--ink);
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--ink);
     }
     .review-card-img {
       width: 100%;
@@ -493,6 +504,7 @@
       background: var(--cream);
       overflow: hidden;
       position: relative;
+      border-bottom: 2px solid var(--ink);
     }
     .review-card-img img {
       width: 100%; height: 100%;
@@ -504,53 +516,56 @@
       top: 12px; right: 12px;
       background: var(--ink);
       color: var(--paper);
-      width: 44px; height: 44px;
+      width: 56px; height: 56px;
       display: flex; align-items: center; justify-content: center;
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       font-weight: 900;
+      border: 2px solid var(--ink);
     }
     .card-score-badge.terrible { background: var(--red); }
     .card-score-badge.great { background: var(--green); }
     .card-score-badge.meh { background: var(--mustard); color: var(--ink); }
 
     .review-card-body {
-      padding: 20px;
+      padding: 24px;
     }
     .card-category {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
+      font-weight: 500;
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--mid);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .card-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      line-height: 1.25;
-      margin-bottom: 8px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
     }
     .card-excerpt {
-      font-size: 0.83rem;
+      font-size: 0.85rem;
       line-height: 1.6;
       color: var(--smoke);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 14px;
-      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+      border-top: 2px solid var(--ink);
       font-family: 'DM Mono', monospace;
       font-size: 0.62rem;
       color: var(--mid);
       letter-spacing: 0.06em;
     }
     .card-verdict {
-      font-weight: 500;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -561,9 +576,9 @@
     /* ===== VERDICT STRIP ===== */
     .verdict-strip {
       background: var(--ink);
-      border-top: 4px solid var(--red);
-      border-bottom: 4px solid var(--red);
-      padding: 40px;
+      border-top: 7px solid var(--red);
+      border-bottom: 7px solid var(--red);
+      padding: 48px 40px;
     }
     .verdict-strip-inner {
       max-width: 1200px;
@@ -575,46 +590,48 @@
     }
     .verdict-strip-eyebrow {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: rgba(245,240,232,0.45);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .verdict-strip-name {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-size: clamp(2rem, 4.5vw, 3.6rem);
       font-weight: 900;
       font-style: italic;
       color: var(--paper);
-      line-height: 1.1;
-      margin-bottom: 10px;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
     }
     .verdict-strip-sub {
       font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: rgba(245,240,232,0.45);
     }
     .verdict-strip-score {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(5rem, 9vw, 9rem);
+      font-size: clamp(6rem, 13vw, 12rem);
       font-weight: 900;
-      line-height: 1;
+      line-height: 0.85;
       color: var(--red);
       flex-shrink: 0;
     }
     @media (max-width: 900px) {
-      .verdict-strip { padding: 32px 20px; }
+      .verdict-strip { padding: 36px 20px; }
     }
 
     /* ===== NEWSLETTER STRIP ===== */
     .newsletter-strip {
       background: var(--cream);
-      border-top: 2px solid var(--ink);
-      border-bottom: 2px solid var(--ink);
-      padding: 48px 40px;
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+      padding: 56px 40px;
     }
     .newsletter-strip-inner {
       max-width: 1200px;
@@ -628,29 +645,31 @@
     .newsletter-copy { max-width: 520px; }
     .newsletter-eyebrow {
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.68rem;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--red);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .newsletter-headline {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
       font-weight: 900;
       font-style: italic;
-      line-height: 1.15;
-      margin-bottom: 10px;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 12px;
       color: var(--ink);
     }
     .newsletter-sub {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       line-height: 1.6;
       color: var(--smoke);
     }
     .newsletter-form {
       display: flex;
-      gap: 10px;
+      gap: 0;
       flex-wrap: wrap;
       flex-shrink: 0;
       width: 100%;
@@ -660,9 +679,9 @@
       flex: 1;
       min-width: 200px;
       background: var(--white);
-      border: 1px solid var(--rule);
-      border-bottom: 2px solid var(--ink);
-      padding: 12px 16px;
+      border: 2px solid var(--ink);
+      border-right: none;
+      padding: 15px 18px;
       font-size: 0.9rem;
       font-family: 'DM Sans', sans-serif;
       color: var(--ink);
@@ -674,18 +693,18 @@
     .newsletter-btn {
       background: var(--ink);
       color: var(--paper);
-      border: none;
-      padding: 12px 22px;
+      border: 2px solid var(--ink);
+      padding: 15px 26px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
       white-space: nowrap;
       transition: background 0.2s;
     }
-    .newsletter-btn:hover { background: var(--red); }
+    .newsletter-btn:hover { background: var(--red); border-color: var(--red); }
     .newsletter-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .newsletter-msg {
       width: 100%;
@@ -701,6 +720,7 @@
       .newsletter-strip { padding: 36px 20px; }
       .newsletter-strip-inner { flex-direction: column; align-items: flex-start; }
       .newsletter-form { max-width: 100%; }
+      .newsletter-input { border-right: 2px solid var(--ink); }
     }
 
     /* ===== FOOTER NEWSLETTER ===== */
@@ -710,8 +730,9 @@
     }
     .footer-newsletter h4 {
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--mustard);
       margin-bottom: 10px;
@@ -745,11 +766,11 @@
     .footer-newsletter-btn {
       background: var(--mustard);
       color: var(--ink);
-      border: none;
+      border: 2px solid var(--mustard);
       padding: 10px 16px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.78rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       cursor: pointer;
@@ -781,37 +802,40 @@
     }
     .rant-scale h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 900;
       font-style: italic;
+      letter-spacing: -0.02em;
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .rant-scale-sub {
       text-align: center;
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
+      font-weight: 500;
+      font-size: 0.76rem;
       color: rgba(245,240,232,0.5);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
     }
     .scale-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 2px;
+      gap: 3px;
     }
     .scale-item {
-      padding: 24px 16px;
+      padding: 28px 16px;
       text-align: center;
       background: rgba(255,255,255,0.04);
     }
     .scale-num {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 3.8rem;
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
     }
     .scale-item:nth-child(1) .scale-num { color: #8B0000; }
     .scale-item:nth-child(2) .scale-num { color: var(--red); }
@@ -820,11 +844,12 @@
     .scale-item:nth-child(5) .scale-num { color: var(--green); }
     .scale-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(245,240,232,0.6);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .scale-desc {
       font-size: 0.8rem;
@@ -847,11 +872,12 @@
     }
     .about-strip h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .about-strip p {
       font-size: 1rem;
@@ -862,7 +888,8 @@
     .manifesto {
       background: var(--ink);
       color: var(--paper);
-      padding: 28px;
+      padding: 32px;
+      border-left: 6px solid var(--red);
     }
     .manifesto-item {
       display: flex;
@@ -887,19 +914,20 @@
     .submit-section {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 40px;
+      padding: 64px 40px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: start;
-      border-top: 2px solid var(--ink);
+      border-top: 3px solid var(--ink);
     }
     .submit-section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-size: clamp(2.2rem, 3.6vw, 3.2rem);
       font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 16px;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
     }
     .submit-section h2 em { font-style: italic; color: var(--red); }
     .submit-section p {
@@ -912,18 +940,18 @@
     }
     .form-label {
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.68rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--mid);
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .form-input {
       width: 100%;
       background: var(--white);
-      border: 1px solid var(--rule);
-      border-bottom: 2px solid var(--ink);
+      border: 2px solid var(--ink);
       padding: 12px 16px;
       font-size: 0.9rem;
       font-family: 'DM Sans', sans-serif;
@@ -942,12 +970,12 @@
     }
     .rating-btn {
       background: var(--cream);
-      border: 1px solid var(--rule);
+      border: 2px solid var(--ink);
       padding: 10px 4px;
       text-align: center;
       cursor: pointer;
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 900;
       transition: all 0.15s;
     }
@@ -968,31 +996,32 @@
     .btn-submit {
       background: var(--ink);
       color: var(--paper);
-      border: none;
+      border: 2px solid var(--ink);
       padding: 16px 32px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
       width: 100%;
       margin-top: 8px;
-      transition: background 0.2s;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
     }
-    .btn-submit:hover { background: var(--red); }
+    .btn-submit:hover { background: var(--red); border-color: var(--red); box-shadow: 5px 5px 0 var(--ink); transform: translate(-2px, -2px); }
+    .btn-submit:active { box-shadow: none; transform: translate(0, 0); }
 
     .guidelines {
       background: var(--cream);
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--mustard);
-      padding: 24px;
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--mustard);
+      padding: 26px;
     }
     .guidelines h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 16px;
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 18px;
     }
     .guideline-item {
       display: flex;
@@ -1013,7 +1042,7 @@
     footer {
       background: var(--ink);
       color: var(--paper);
-      padding: 48px 40px 32px;
+      padding: 56px 40px 36px;
     }
     .footer-inner {
       max-width: 1200px;
@@ -1025,16 +1054,16 @@
       align-items: flex-start;
       flex-wrap: wrap;
       gap: 40px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 28px;
+      padding-bottom: 36px;
+      border-bottom: 2px solid rgba(255,255,255,0.15);
+      margin-bottom: 30px;
     }
     .footer-logo .word-food {
       display: block;
       font-family: 'Playfair Display', serif;
       font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.45em;
+      font-weight: 900;
+      letter-spacing: 0.5em;
       text-transform: uppercase;
       color: rgba(245,240,232,0.5);
       line-height: 1;
@@ -1042,29 +1071,31 @@
     .footer-logo .word-rantings {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       font-weight: 900;
       font-style: italic;
       color: var(--mustard);
-      line-height: 0.92;
+      line-height: 0.88;
       letter-spacing: -0.02em;
     }
     .footer-tagline {
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.68rem;
       color: rgba(245,240,232,0.4);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .footer-cities h4,
     .footer-nav h4 {
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--mustard);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .footer-cities p {
       font-size: 0.85rem;
@@ -1075,10 +1106,11 @@
       list-style: none;
     }
     .footer-nav li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .footer-nav a {
       font-size: 0.85rem;
+      font-weight: 500;
       color: rgba(245,240,232,0.5);
       text-decoration: none;
       transition: color 0.2s;
@@ -1090,6 +1122,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
       color: rgba(245,240,232,0.3);
@@ -1115,18 +1149,18 @@
     /* ===== FILTER BUTTONS ===== */
     .rant-filter {
       background: var(--cream);
-      border: 1px solid var(--rule);
-      border-bottom: 2px solid var(--ink);
-      padding: 7px 16px;
+      border: 2px solid var(--ink);
+      padding: 8px 18px;
       font-family: 'DM Mono', monospace;
+      font-weight: 500;
       font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: var(--ink);
       cursor: pointer;
       transition: all 0.15s;
     }
-    .rant-filter:hover { border-bottom-color: var(--red); color: var(--red); }
+    .rant-filter:hover { background: var(--red); border-color: var(--red); color: var(--white); }
     .rant-filter.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
     /* ===== COMMUNITY RANTS ===== */
@@ -1136,7 +1170,7 @@
       padding: 0 40px 60px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 30px;
     }
     @media (max-width: 900px) {
       .community-rants-grid { grid-template-columns: 1fr; padding: 0 20px 40px; }
@@ -1146,14 +1180,20 @@
       text-decoration: none;
       color: inherit;
     }
+    .community-card-link:hover .community-card {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
     .community-card {
       background: var(--white);
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--mustard);
-      padding: 24px;
+      border: 2px solid var(--ink);
+      border-left: 8px solid var(--mustard);
+      box-shadow: 6px 6px 0 var(--ink);
+      padding: 26px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
     .community-card.card-good  { border-left-color: var(--green); }
     .community-card.card-meh   { border-left-color: var(--mustard); }
@@ -1167,22 +1207,23 @@
     }
     .community-restaurant {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      line-height: 1.2;
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
     }
     .community-score {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: 2.3rem;
       font-weight: 900;
-      line-height: 1;
+      line-height: 0.9;
       flex-shrink: 0;
     }
     .community-score.score-bad  { color: var(--red); }
     .community-score.score-meh  { color: var(--mustard); }
     .community-score.score-good { color: var(--green); }
     .community-rant-text {
-      font-size: 0.88rem;
+      font-size: 0.89rem;
       line-height: 1.65;
       color: var(--smoke);
       flex: 1;
@@ -1191,29 +1232,30 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 12px;
-      border-top: 1px solid var(--rule);
+      padding-top: 14px;
+      border-top: 2px solid var(--ink);
       font-family: 'DM Mono', monospace;
       font-size: 0.62rem;
       color: var(--mid);
       letter-spacing: 0.06em;
     }
-    .community-author { font-weight: 500; color: var(--ink); }
+    .community-author { font-weight: 600; color: var(--ink); }
     .community-tag {
       display: inline-block;
-      background: transparent;
-      border: 1px solid currentColor;
+      background: var(--ink);
+      color: var(--paper);
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
+      font-weight: 500;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 3px 8px;
-      color: var(--mid);
+      padding: 5px 11px;
+      width: fit-content;
     }
-    .community-tag.tag-good  { color: var(--green); }
-    .community-tag.tag-meh   { color: var(--mustard); }
-    .community-tag.tag-bad   { color: var(--red); }
-    .community-tag.tag-crime { color: #8B0000; }
+    .community-tag.tag-good  { background: var(--green); color: var(--paper); }
+    .community-tag.tag-meh   { background: var(--mustard); color: var(--ink); }
+    .community-tag.tag-bad   { background: var(--red); color: var(--paper); }
+    .community-tag.tag-crime { background: #8B0000; color: var(--paper); }
     .rants-loading, .rants-empty {
       max-width: 1200px;
       margin: 0 auto;
@@ -1298,7 +1340,7 @@
     </div>
     <div class="nav-bottom">
       <ul class="nav-links">
-        <li><a href="/guide/">The Guide</a></li>
+        <li><a class="flagship" href="/guide/">The Guide</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#scale">Our Scale</a></li>
         <li><a href="#about">About</a></li>
