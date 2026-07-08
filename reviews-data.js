@@ -88,7 +88,7 @@ const staticReviews = [
   },
   {
     "slug": "taco-bell-reckeweg-rd",
-    "restaurant": "Taco Bell — Reckeweg Rd",
+    "restaurant": "Taco Bell",
     "score": "1–2",
     "tier": "A Crime",
     "body": "The drive-thru service was so bad I told them to keep my order and pulled off without it. I left Taco Bell without food and felt better about it. That is how bad it was. Staffed with disrespectful employees and limited supervision. There are other Taco Bell locations in this city that function like normal restaurants. This is not one of them. Avoid by address.",
@@ -112,7 +112,7 @@ const staticReviews = [
   },
   {
     "slug": "mcdonalds-goshen-rd",
-    "restaurant": "McDonald's — Goshen Rd",
+    "restaurant": "McDonald's",
     "score": "1–2",
     "tier": "A Crime",
     "body": "All the buns were hard and stale. Everything tasted like it had been microwaved back to life from a previous shift. The Goshen Road location is a lost cause. There is no reason to stop here when the Coliseum location exists — management there is involved and the operation runs like it should. Do yourself a favor and drive the extra mile.",

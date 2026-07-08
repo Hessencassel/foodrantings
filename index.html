@@ -1212,6 +1212,15 @@
       line-height: 1.08;
       letter-spacing: -0.01em;
     }
+    .community-location {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: -4px;
+    }
     .community-score {
       font-family: 'Playfair Display', serif;
       font-size: 2.3rem;
@@ -1927,6 +1936,13 @@
           galleryHtml = `<div style="display:grid; grid-template-columns:repeat(${Math.min(urls.length,3)}, 1fr); gap:4px; margin-bottom:12px;">${thumbs}</div>`;
         }
       }
+      let locationText = '';
+      if (r.neighborhood) {
+        locationText = r.area && r.area !== r.neighborhood ? `${r.neighborhood} · ${r.area}` : r.neighborhood;
+      } else if (r.area) {
+        locationText = r.area;
+      }
+      const locationHtml = locationText ? `<div class="community-location">${escHtml(locationText)}</div>` : '';
       const cardHtml = `
             <div class="community-card ${cardCls}">
               ${galleryHtml}
@@ -1934,6 +1950,7 @@
                 <div class="community-restaurant">${escHtml(r.restaurant)}</div>
                 <div class="community-score ${cls}">${escHtml(r.score)}</div>
               </div>
+              ${locationHtml}
               <span class="community-tag ${tagCls}">${escHtml(r.tier)}</span>
               <p class="community-rant-text">${escHtml(r.body)}</p>
               <div class="community-footer">
