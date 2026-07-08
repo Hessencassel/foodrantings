@@ -579,18 +579,6 @@ const staticReviews = [
     "area": "Coldwater"
   },
   {
-    "slug": "rudys",
-    "restaurant": "Rudy's",
-    "score": "7–8",
-    "tier": "Must Visit",
-    "body": "A good place for a few drinks and a cigar, and that is exactly what it is going for. Beer and wine only — no liquor — so set your expectations there. What sets it apart is the walk-in humidor, which is a genuine feature and not something you find on every corner. If a relaxed drink and a good cigar is the night you are after, this is your spot.",
-    "author": "The Rant Desk",
-    "date": "Mar 2022",
-    "cuisine": "Bar & Grill",
-    "neighborhood": "Downtown",
-    "area": "Brackenridge"
-  },
-  {
     "slug": "crumbl",
     "restaurant": "Crumbl",
     "score": "5–6",
