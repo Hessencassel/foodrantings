@@ -12,7 +12,11 @@ const SITE_URL = 'https://foodrantings.com';
 const OG_IMAGE = SITE_URL + '/og-default.png';
 
 // ---- load staticReviews from reviews-data.js (plain script, not a module) ----
-const dataSrc = fs.readFileSync(path.join(ROOT, 'reviews-data.js'), 'utf8');
+// Explicit buffer -> utf8 decode (rather than relying on readFileSync's string
+// encoding shortcut) so there is no ambiguity about how non-ASCII source
+// characters (en/em dashes, etc.) are interpreted going in.
+const dataBuf = fs.readFileSync(path.join(ROOT, 'reviews-data.js'));
+const dataSrc = dataBuf.toString('utf8');
 const staticReviews = new Function(dataSrc + '\nreturn staticReviews;')();
 
 // ---- score helpers (mirrors index.html's scoreClass/cardBorderClass/tagColorClass) ----
@@ -178,7 +182,9 @@ let count = 0;
 for (const r of staticReviews) {
   const dir = path.join(outDir, r.slug);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), pageHtml(r), 'utf8');
+  // Explicit utf8 buffer (not the string+'utf8' shorthand) so the byte
+  // encoding of the output file is never left to an implicit default.
+  fs.writeFileSync(path.join(dir, 'index.html'), Buffer.from(pageHtml(r), 'utf8'));
   count++;
 }
 console.log(`generate-reviews.js: wrote ${count} review permalink pages to /review/`);
