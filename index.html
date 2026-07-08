@@ -1141,6 +1141,11 @@
     @media (max-width: 900px) {
       .community-rants-grid { grid-template-columns: 1fr; padding: 0 20px 40px; }
     }
+    .community-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
     .community-card {
       background: var(--white);
       border: 1px solid var(--rule);
@@ -1878,7 +1883,7 @@
           galleryHtml = `<div style="display:grid; grid-template-columns:repeat(${Math.min(urls.length,3)}, 1fr); gap:4px; margin-bottom:12px;">${thumbs}</div>`;
         }
       }
-      return `
+      const cardHtml = `
             <div class="community-card ${cardCls}">
               ${galleryHtml}
               <div class="community-card-header">
@@ -1892,6 +1897,12 @@
                 <span>${escHtml(r.date)}</span>
               </div>
             </div>`;
+
+      // Only static reviews (with a slug) have a generated permalink page.
+      if (r.slug) {
+        return `<a class="community-card-link" href="/review/${escHtml(r.slug)}/">${cardHtml}</a>`;
+      }
+      return cardHtml;
     }
 
     // ── Render the 24 Reader Rants from data, in original order ────

@@ -22,6 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Build output (none currently, reserved for future tooling)
+# Build output
 dist/
 build/
+review/
