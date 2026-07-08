@@ -1437,12 +1437,12 @@
   <div class="stats-strip">
     <div class="stats-strip-inner">
       <div class="stats-item">
-        <span class="stats-num">24</span>
+        <span class="stats-num" id="stat-restaurants-rated">24</span>
         <span class="stats-label">Restaurants Rated</span>
       </div>
       <div class="stats-sep">/</div>
       <div class="stats-item">
-        <span class="stats-num">3</span>
+        <span class="stats-num" id="stat-condemned">3</span>
         <span class="stats-label">Condemned</span>
       </div>
       <div class="stats-sep">/</div>
@@ -2218,12 +2218,24 @@
       if (emptyEl) emptyEl.style.display = visibleCount === 0 ? 'flex' : 'none';
     }
 
-    // ── Render the 24 Reader Rants from data, in original order ────
+    // ── Render the Reader Rants from data, in original order ───────
     function renderStaticReviews() {
       const grid = document.getElementById('static-reviews-grid');
       (typeof staticReviews !== 'undefined' ? staticReviews : []).forEach(r => {
         grid.innerHTML += renderReviewCard(r);
       });
+    }
+
+    // ── Stats ticker: Restaurants Rated / Condemned, auto-counted from
+    // reviews-data.js so they never go stale as reviews are added. If the
+    // data fails to load for some reason, leave the hardcoded fallback
+    // numbers in the markup untouched rather than showing a wrong "0".
+    function updateStatsTicker() {
+      if (typeof staticReviews === 'undefined' || !Array.isArray(staticReviews) || staticReviews.length === 0) return;
+      const ratedEl = document.getElementById('stat-restaurants-rated');
+      const condemnedEl = document.getElementById('stat-condemned');
+      if (ratedEl) ratedEl.textContent = staticReviews.length;
+      if (condemnedEl) condemnedEl.textContent = staticReviews.filter(r => r.tier === 'A Crime').length;
     }
 
     // ── Load approved community rants, appended after static ones ──
@@ -2262,6 +2274,7 @@
     renderStaticReviews();
     renderFilterChips();
     applyFilters();
+    updateStatsTicker();
     loadCommunityRants();
 
     // ── Search ───────────────────────────────────────────────────
