@@ -625,5 +625,29 @@ const staticReviews = [
     "cuisine": "Dessert",
     "neighborhood": "Northeast",
     "area": "State Blvd"
+  },
+  {
+    "slug": "pizza-king-waynedale",
+    "restaurant": "Pizza King (Waynedale)",
+    "score": "7–8",
+    "tier": "Must Visit",
+    "body": "Always great pizza, and the last visit was no different — loved every bite of it. This is the Waynedale Pizza King, and it earns its spot. There is no reinvention happening here, no gimmick, just a pie done right every single time you walk in. When a place is this consistent, you stop questioning it and just order. Fantastic pizza, full stop.",
+    "author": "The Rant Desk",
+    "date": "Jan 2022",
+    "cuisine": "Pizza",
+    "neighborhood": "Waynedale",
+    "area": "Bluffton"
+  },
+  {
+    "slug": "arcos",
+    "restaurant": "Arco's",
+    "score": "5–6",
+    "tier": "Meh",
+    "body": "Arco's took over the old Bandidos spot in Waynedale, and the food is better than what was here before — but let us be honest about what it is. Nothing is bland exactly, there is just not a lot of flavor going on. The salsa is mid-grade at best. The whole operation reads like an upscale Taco Bell: cleaner, a step up, but not the authentic punch you want from a Mexican kitchen. It is fine. It fills the gap. It is not a place I am going out of my way for.",
+    "author": "The Rant Desk",
+    "date": "Apr 2022",
+    "cuisine": "Mexican",
+    "neighborhood": "Waynedale",
+    "area": "Winchester"
   }
 ];
