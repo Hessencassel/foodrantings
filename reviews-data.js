@@ -244,7 +244,7 @@ const staticReviews = [
   },
   {
     "slug": "ihop-w-jefferson-blvd",
-    "restaurant": "IHOP — W Jefferson Blvd",
+    "restaurant": "IHOP",
     "score": "7–8",
     "tier": "Must Visit",
     "body": "There is a stellar crew working at the Jefferson location. Hospitality is phenomenal and that is not something you expect to say about an IHOP. The food is what it is — it is IHOP — but when the staff runs the room this well, the whole experience gets elevated. Not every location operates like this. This one does. Worth the stop.",
@@ -268,7 +268,7 @@ const staticReviews = [
   },
   {
     "slug": "crust-brewing-rosemont-il",
-    "restaurant": "Crust Brewing — Rosemont, IL",
+    "restaurant": "Crust Brewing",
     "score": "3–4",
     "tier": "Bad",
     "body": "Walking in I was hit with a wall of noise and chaos with no real theme — just a jumble of everything happening at once. Ordered the Philly Za pizza. Big mistake. A Philly cheesesteak pizza should have steak, peppers, and cheese in some recognizable proportion. What arrived was a soggy mess with ingredients that did not belong together and none of them cooked to the right temperature. The concept is interesting on paper. The execution is not there.",
