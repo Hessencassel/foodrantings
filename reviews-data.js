@@ -28,7 +28,7 @@ const staticReviews = [
   },
   {
     "slug": "salvatoris-fort-wayne-north",
-    "restaurant": "Salvatori's Fort Wayne North",
+    "restaurant": "Salvatori's",
     "score": "7–8",
     "tier": "Must Visit",
     "body": "Salvatori's could put Casa Grande out of business and I say that knowing what Casa Grande means to people here. Everything we had was delicious and cooked to perfection. The bread is made fresh and it comes with the meal and it will ruin you for lesser bread. Bar area seating is the right call. This is a place that has figured out what it is and executes it consistently.",
