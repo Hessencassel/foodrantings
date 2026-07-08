@@ -1187,6 +1187,78 @@
     .rant-filter:hover { background: var(--red); border-color: var(--red); color: var(--white); }
     .rant-filter.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
+    /* ===== FILTER BAR (cuisine / neighborhood / verdict) ===== */
+    .filter-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .filter-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .filter-group-label {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      flex-shrink: 0;
+      width: 130px;
+      padding-top: 9px;
+    }
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-count {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      padding-top: 12px;
+      border-top: 2px solid var(--ink);
+    }
+    .filter-empty {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px 60px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .filter-empty-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .filter-empty-sub {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+    }
+    @media (max-width: 900px) {
+      .filter-bar { padding: 0 20px 24px; }
+      .filter-empty { padding: 40px 20px; }
+    }
+    @media (max-width: 600px) {
+      .filter-group { flex-direction: column; gap: 8px; }
+      .filter-group-label { width: auto; padding-top: 0; }
+    }
+
     /* ===== COMMUNITY RANTS ===== */
     .community-rants-grid {
       max-width: 1200px;
@@ -1553,16 +1625,28 @@
   <div class="section-rule" id="community-rants-header"><h2>Reader Rants</h2></div>
 
   <!-- Filter bar -->
-  <div style="max-width:1200px; margin:0 auto; padding:0 40px 24px; display:flex; gap:10px; flex-wrap:wrap;">
-    <button class="rant-filter active" onclick="filterRants(this, 'all')">All</button>
-    <button class="rant-filter" onclick="filterRants(this, 'Must Visit')">Must Visit</button>
-    <button class="rant-filter" onclick="filterRants(this, 'Meh')">Meh</button>
-    <button class="rant-filter" onclick="filterRants(this, 'Bad')">Bad</button>
-    <button class="rant-filter" onclick="filterRants(this, 'A Crime')">A Crime</button>
+  <div class="filter-bar">
+    <div class="filter-group">
+      <div class="filter-group-label">Cuisine</div>
+      <div class="filter-chips" id="filter-chips-cuisine"></div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-label">Neighborhood</div>
+      <div class="filter-chips" id="filter-chips-neighborhood"></div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-label">Verdict</div>
+      <div class="filter-chips" id="filter-chips-tier"></div>
+    </div>
+    <div class="filter-count" id="filter-count"></div>
   </div>
 
   <div id="community-rants-container">
     <div class="community-rants-grid" id="static-reviews-grid"></div>
+    <div class="filter-empty" id="filter-empty">
+      <div class="filter-empty-headline">Nothing matches that combination.</div>
+      <div class="filter-empty-sub">EVEN WE HAVE STANDARDS. TRY A DIFFERENT FILTER.</div>
+    </div>
   </div>
 
   <!-- Newsletter Signup -->
@@ -1711,6 +1795,23 @@
             <option value="Central">Central</option>
             <option value="Waynedale">Waynedale</option>
             <option value="Other / Outside Fort Wayne">Other / Outside Fort Wayne</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">What Kind of Food?</label>
+          <select name="cuisine" class="form-select" required>
+            <option value="" disabled selected>Select cuisine...</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Italian">Italian</option>
+            <option value="Pizza">Pizza</option>
+            <option value="American">American</option>
+            <option value="Steakhouse">Steakhouse</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Fast Food">Fast Food</option>
+            <option value="Irish Pub">Irish Pub</option>
+            <option value="Pub">Pub</option>
+            <option value="Bar &amp; Grill">Bar &amp; Grill</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div class="form-field">
@@ -1986,7 +2087,7 @@
       }
       const locationHtml = locationText ? `<div class="community-location">${escHtml(locationText)}</div>` : '';
       const cardHtml = `
-            <div class="community-card ${cardCls}">
+            <div class="community-card ${cardCls}" data-cuisine="${escHtml(r.cuisine || '')}" data-neighborhood="${escHtml(r.neighborhood || '')}" data-tier="${escHtml(r.tier || '')}">
               ${galleryHtml}
               <div class="community-card-header">
                 <div class="community-restaurant">${escHtml(r.restaurant)}</div>
@@ -2036,24 +2137,89 @@
             date: r.date,
             photo_urls: r.photo_urls,
             neighborhood: r.neighborhood,
+            cuisine: r.cuisine,
           });
         });
+
+        // Live submissions may introduce a cuisine/neighborhood not seen in
+        // the static set, and always change the total count — rebuild.
+        renderFilterChips();
+        applyFilters();
       } catch {
         // Silently fail — static reviews still show
       }
     }
 
     renderStaticReviews();
+    renderFilterChips();
+    applyFilters();
     loadCommunityRants();
 
-    // ── Filter ───────────────────────────────────────────────────
-    function filterRants(btn, tag) {
-      document.querySelectorAll('.rant-filter').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.community-card').forEach(card => {
-        const cardTag = card.querySelector('.community-tag')?.textContent || '';
-        card.style.display = (tag === 'all' || cardTag === tag) ? '' : 'none';
+    // ── Filter (cuisine / neighborhood / verdict, combine across groups) ──
+    // Reads directly from the DOM (data-cuisine/data-neighborhood/data-tier
+    // on each .community-card), so curated reviews and live Netlify Forms
+    // submissions are filtered identically — whatever's rendered is
+    // filterable, with no separate "list of reviews" to keep in sync.
+    const TIER_ORDER = ['Legend', 'Must Visit', 'Meh', 'Bad', 'A Crime'];
+    const activeFilters = { cuisine: '', neighborhood: '', tier: '' };
+
+    function collectFilterValues() {
+      const cards = document.querySelectorAll('.community-card');
+      const cuisines = new Set();
+      const neighborhoods = new Set();
+      cards.forEach(c => {
+        if (c.dataset.cuisine) cuisines.add(c.dataset.cuisine);
+        if (c.dataset.neighborhood) neighborhoods.add(c.dataset.neighborhood);
       });
+      return { cuisines: [...cuisines].sort(), neighborhoods: [...neighborhoods].sort() };
+    }
+
+    function renderChipGroup(containerId, values, group) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+      const makeChip = (label, value) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'rant-filter' + (activeFilters[group] === value ? ' active' : '');
+        btn.textContent = label;
+        btn.addEventListener('click', () => setFilter(group, value));
+        return btn;
+      };
+      container.appendChild(makeChip('All', ''));
+      values.forEach(v => container.appendChild(makeChip(v, v)));
+    }
+
+    function renderFilterChips() {
+      const { cuisines, neighborhoods } = collectFilterValues();
+      renderChipGroup('filter-chips-cuisine', cuisines, 'cuisine');
+      renderChipGroup('filter-chips-neighborhood', neighborhoods, 'neighborhood');
+      renderChipGroup('filter-chips-tier', TIER_ORDER, 'tier');
+    }
+
+    function setFilter(group, value) {
+      activeFilters[group] = value;
+      renderFilterChips();
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.community-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const matches =
+          (!activeFilters.cuisine || card.dataset.cuisine === activeFilters.cuisine) &&
+          (!activeFilters.neighborhood || card.dataset.neighborhood === activeFilters.neighborhood) &&
+          (!activeFilters.tier || card.dataset.tier === activeFilters.tier);
+        const outer = card.closest('.community-card-link') || card;
+        outer.style.display = matches ? '' : 'none';
+        if (matches) visibleCount++;
+      });
+      const total = cards.length;
+      const countEl = document.getElementById('filter-count');
+      if (countEl) countEl.textContent = `Showing ${visibleCount} of ${total}`;
+      const emptyEl = document.getElementById('filter-empty');
+      if (emptyEl) emptyEl.style.display = visibleCount === 0 ? 'flex' : 'none';
     }
 
     // ── Search ───────────────────────────────────────────────────
